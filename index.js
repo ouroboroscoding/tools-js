@@ -20,10 +20,10 @@ const _reQueryName = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/;
  *
  * @name afindi
  * @access public
- * @param {array} a	The value to look through
+ * @param {Array} a	The value to look through
  * @param {string} k The name of the key to check
  * @param {any} v The value to check against
- * @return number
+ * @returns {number}
  */
 export function afindi(a, k, v) {
     for (let i = 0; i < a.length; ++i) {
@@ -41,10 +41,10 @@ export function afindi(a, k, v) {
  *
  * @name afindo
  * @access public
- * @param {array} a The value to look through
+ * @param {Array} a The value to look through
  * @param {string} k The name of the key to check
  * @param {any} v The value to check against
- * @return object
+ * @returns {Object}
  */
 export function afindo(a, k, v) {
     for (const o of a) {
@@ -61,10 +61,10 @@ export function afindo(a, k, v) {
  *
  * @name ashift
  * @access public
- * @param {array} arr The array to shift the item in
+ * @param {Array} arr The array to shift the item in
  * @param {number} from The current location of the item
  * @param {number} to The new location of the item
- * @returns void
+ * @returns {void}
  */
 export function ashift(arr, from, to) {
     if (from >= 0 && from < arr.length) {
@@ -81,7 +81,7 @@ export function ashift(arr, from, to) {
  * @name bytesHuman
  * @access public
  * @param {number} num The value in bytes to convert to human readable
- * @returns string
+ * @returns {string}
  */
 export function bytesHuman(num) {
     for (const unit of ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']) {
@@ -100,7 +100,7 @@ export function bytesHuman(num) {
  * @name clone
  * @access public
  * @param {any} o The variable to clone
- * @return any
+ * @returns {any}
  */
 export function clone(o) {
     // New var
@@ -134,9 +134,9 @@ export function clone(o) {
  *
  * @name combine
  * @access public
- * @param {object} a An object to be combined with b
- * @param {object} b An object to be combined with a
- * @return object
+ * @param {Object} a An object to be combined with b
+ * @param {Object} b An object to be combined with a
+ * @returns {Object}
  */
 export function combine(a, b) {
     // Copy the first object
@@ -167,7 +167,7 @@ export function combine(a, b) {
  * @access public
  * @param {any} v1				The first value
  * @param {any} v2				The second value
- * @return boolean
+ * @returns {boolean}
  */
 export function compare(v1, v2) {
     // If they're both arrays
@@ -216,7 +216,7 @@ export function compare(v1, v2) {
  * @access public
  * @param {number} x The dividend
  * @param {number} y The divisor
- * @return Array
+ * @returns {Array}
  */
 export function divmod(x, y) {
     /* tslint:disable:no-bitwise */
@@ -234,7 +234,7 @@ export function divmod(x, y) {
  * @name empty
  * @access public
  * @param {any} m The value to check, can be object, array, string, etc
- * @return boolean
+ * @returns {boolean}
  */
 export function empty(m) {
     // If it's an object
@@ -266,7 +266,7 @@ export function empty(m) {
  * @name isDecimal
  * @access public
  * @param {any} m The variable to test
- * @return boolean
+ * @returns {boolean}
  */
 export function isDecimal(m) {
     return typeof m === 'number';
@@ -279,7 +279,7 @@ export function isDecimal(m) {
  * @name isInteger
  * @access public
  * @param {any} m The variable to test
- * @return boolean
+ * @returns {boolean}
  */
 export function isInteger(m) {
     /* tslint:disable:no-bitwise */
@@ -294,7 +294,7 @@ export function isInteger(m) {
  * @name isNumeric
  * @access public
  * @param {string} s The string to check
- * @returns boolean
+ * @returns {boolean}
  */
 export function isNumeric(s) {
     // Get the type of the argument
@@ -320,7 +320,7 @@ export function isNumeric(s) {
  * @name isObject
  * @access public
  * @param {any} m The variable to test
- * @return boolean
+ * @returns {boolean}
  */
 export function isObject(m) {
     if (m === null)
@@ -340,9 +340,9 @@ export function isObject(m) {
  * @name join
  * @access public
  * @param {object} o The object to pull members from
- * @param {array} l The list of members, in order, to join together
+ * @param {Array} l The list of members, in order, to join together
  * @param {string} separator Optional char/string to join with, defaults to space
- * @returns string
+ * @returns {string}
  */
 export function join(o, l, separator = ' ') {
     // Init the array of found members
@@ -365,7 +365,7 @@ export function join(o, l, separator = ' ') {
  * @name max
  * @access public
  * @param {array} a The array to find the largest value in
- * @returns any
+ * @returns {string | number | null}
  */
 export function max(a) {
     // If we didn't get an array
@@ -408,9 +408,9 @@ export function max(a) {
  *
  * @name merge
  * @access public
- * @param {object} a The object to merge with b
- * @param {object} b The object to merge with a
- * @returns void
+ * @param {Object} a The object to merge with b
+ * @param {Object} b The object to merge with a
+ * @returns {void}
  */
 export function merge(a, b) {
     // Get each key of the second dict
@@ -434,7 +434,7 @@ export function merge(a, b) {
  * @name min
  * @access public
  * @param {array} a The array to find the largest value in
- * @returns any
+ * @returns {string | number | null}
  */
 export function min(a) {
     // If we didn't get an array
@@ -478,7 +478,7 @@ export function min(a) {
  * @name nicePhone
  * @access public
  * @param {string} val The digits of the phone number to convert
- * @return string
+ * @returns {string}
  */
 export function nicePhone(val) {
     const lMatch = _rePhone.exec(val);
@@ -495,9 +495,9 @@ export function nicePhone(val) {
  *
  * @name omap
  * @access public
- * @param {object} o The object to map
+ * @param {Object} o The object to map
  * @param {function} callback The function to call each iteration
- * @return array
+ * @returns {Array}
  */
 export function omap(o, callback) {
     const ret = [];
@@ -514,9 +514,9 @@ export function omap(o, callback) {
  *
  * @name opop
  * @access public
- * @param {object} o The object to pop from
+ * @param {Object} o The object to pop from
  * @param {string} name The name of the value to pop
- * @return any
+ * @returns {any}
  */
 export function opop(o, name) {
     const m = clone(o[name]);
@@ -531,7 +531,7 @@ export function opop(o, name) {
  * @name parseQuery
  * @access public
  * @param {string} query The query string to parse
- * @returns object
+ * @returns {Object}
  */
 export function parseQuery(query) {
     // Init the return value
@@ -648,12 +648,11 @@ export function parseQuery(query) {
  * Sort By Key
  *
  * Returns a callback function that will compare two objects by the key name
- * pass
  *
  * @name sortByKey
  * @access public
  * @param {string} key The name of the key to sort by
- * @return function
+ * @returns {function}
  */
 export function sortByKey(key) {
     return (a, b) => {
@@ -671,7 +670,7 @@ export function sortByKey(key) {
  * @name ucfirst
  * @access public
  * @param {string} text The text to convert
- * @return string
+ * @returns {string}
  */
 export function ucfirst(text) {
     const lParts = text.split(' ');

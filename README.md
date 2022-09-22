@@ -1,4 +1,3 @@
-
 # @ouroboros/tools
 
 [![npm version](https://img.shields.io/npm/v/@ouroboros/tools.svg)](https://www.npmjs.com/package/@ouroboros/tools) ![MIT License](https://img.shields.io/npm/l/@ouroboros/tools.svg)
@@ -71,7 +70,7 @@ import { bytesHuman } from '@ouroboros/tools';
 
 const bytes = 1073741824; // 1024 * 1024 * 1024
 
-// s = 1.0GiB
+// s = '1.0GiB'
 const s = bytesHuman(bytes);
 ```
 ### clone
@@ -81,7 +80,7 @@ import { clone } from '@ouroboros/tools';
 
 const a = {hello: ['w', 'o', 'r', 'l', 'd']};
 
-// b = {hello: ['w', 'o', 'r', 'l', 'd']}
+// b = { hello: ['w', 'o', 'r', 'l', 'd'] }
 const b = clone(a)
 
 // false, as they are not the same object anymore
@@ -95,7 +94,7 @@ import { combine } from '@ouroboros/tools';
 const a = {hello: 'world', one: 1, three: 4};
 const b = {two: 2, three: 3}
 
-// c = {hello: 'world', one: 1, three: 3, two: 2}
+// c = { hello: 'world', one: 1, three: 3, two: 2 }
 const c = combibe(a, b);
 ```
 
@@ -333,10 +332,10 @@ let people = [
 ];
 
 // people = [
-//  {first: 'Brendan', last: 'Eich'},
-//  {first: 'Chris', last: 'Nasr'},
-//  {first: 'Guido', last: 'van Rossum'}
-//]
+//   { first: 'Brendan', last: 'Eich' },
+//   { first: 'Chris', last: 'Nasr' },
+//   { first: 'Guido', last: 'van Rossum' }
+// ]
 people.sort(sortByKey('first'));
 ```
 ### ucfirst

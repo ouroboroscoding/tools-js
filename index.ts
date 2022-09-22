@@ -22,10 +22,10 @@ const _reQueryName: RegExp = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/
  *
  * @name afindi
  * @access public
- * @param {array} a	The value to look through
+ * @param {Array} a	The value to look through
  * @param {string} k The name of the key to check
  * @param {any} v The value to check against
- * @return number
+ * @returns {number}
  */
 export function afindi(a: Record<string, any>[], k: string, v: any): number {
 	for(let i: number = 0; i < a.length; ++i) {
@@ -44,10 +44,10 @@ export function afindi(a: Record<string, any>[], k: string, v: any): number {
  *
  * @name afindo
  * @access public
- * @param {array} a The value to look through
+ * @param {Array} a The value to look through
  * @param {string} k The name of the key to check
  * @param {any} v The value to check against
- * @return object
+ * @returns {Object}
  */
 export function afindo(a: Record<string, any>[], k: string, v: any): Record<string, any> | null {
 	for(const o of a) {
@@ -65,10 +65,10 @@ export function afindo(a: Record<string, any>[], k: string, v: any): Record<stri
  *
  * @name ashift
  * @access public
- * @param {array} arr The array to shift the item in
+ * @param {Array} arr The array to shift the item in
  * @param {number} from The current location of the item
  * @param {number} to The new location of the item
- * @returns void
+ * @returns {void}
  */
 export function ashift(arr: any[], from: number, to: number): void {
 	if(from >= 0 && from < arr.length) {
@@ -86,7 +86,7 @@ export function ashift(arr: any[], from: number, to: number): void {
  * @name bytesHuman
  * @access public
  * @param {number} num The value in bytes to convert to human readable
- * @returns string
+ * @returns {string}
  */
 export function bytesHuman(num: number): string {
 	for(const unit of ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']) {
@@ -106,7 +106,7 @@ export function bytesHuman(num: number): string {
  * @name clone
  * @access public
  * @param {any} o The variable to clone
- * @return any
+ * @returns {any}
  */
 export function clone(o: any): any {
 
@@ -146,9 +146,9 @@ export function clone(o: any): any {
  *
  * @name combine
  * @access public
- * @param {object} a An object to be combined with b
- * @param {object} b An object to be combined with a
- * @return object
+ * @param {Object} a An object to be combined with b
+ * @param {Object} b An object to be combined with a
+ * @returns {Object}
  */
 export function combine(a: Record<string, any>, b: Record<string, any>): Record<string, any> {
 
@@ -186,7 +186,7 @@ export function combine(a: Record<string, any>, b: Record<string, any>): Record<
  * @access public
  * @param {any} v1				The first value
  * @param {any} v2				The second value
- * @return boolean
+ * @returns {boolean}
  */
 export function compare(v1: any, v2: any): boolean {
 
@@ -244,7 +244,7 @@ export function compare(v1: any, v2: any): boolean {
  * @access public
  * @param {number} x The dividend
  * @param {number} y The divisor
- * @return Array
+ * @returns {Array}
  */
 export function divmod(x: number, y: number): [number, number] {
 	/* tslint:disable:no-bitwise */
@@ -263,7 +263,7 @@ export function divmod(x: number, y: number): [number, number] {
  * @name empty
  * @access public
  * @param {any} m The value to check, can be object, array, string, etc
- * @return boolean
+ * @returns {boolean}
  */
 export function empty(m: any): boolean {
 
@@ -301,7 +301,7 @@ export function empty(m: any): boolean {
  * @name isDecimal
  * @access public
  * @param {any} m The variable to test
- * @return boolean
+ * @returns {boolean}
  */
 export function isDecimal(m: any): boolean {
 	return typeof m === 'number';
@@ -315,7 +315,7 @@ export function isDecimal(m: any): boolean {
  * @name isInteger
  * @access public
  * @param {any} m The variable to test
- * @return boolean
+ * @returns {boolean}
  */
 export function isInteger(m: any): boolean {
 	/* tslint:disable:no-bitwise */
@@ -331,7 +331,7 @@ export function isInteger(m: any): boolean {
  * @name isNumeric
  * @access public
  * @param {string} s The string to check
- * @returns boolean
+ * @returns {boolean}
  */
 export function isNumeric(s: string): boolean {
 
@@ -362,7 +362,7 @@ export function isNumeric(s: string): boolean {
  * @name isObject
  * @access public
  * @param {any} m The variable to test
- * @return boolean
+ * @returns {boolean}
  */
 export function isObject(m: any): boolean {
 	if(m === null) return false;
@@ -380,9 +380,9 @@ export function isObject(m: any): boolean {
  * @name join
  * @access public
  * @param {object} o The object to pull members from
- * @param {array} l The list of members, in order, to join together
+ * @param {Array} l The list of members, in order, to join together
  * @param {string} separator Optional char/string to join with, defaults to space
- * @returns string
+ * @returns {string}
  */
 export function join(o: Record<string, any>, l: string[], separator: string=' ') {
 
@@ -410,9 +410,9 @@ export function join(o: Record<string, any>, l: string[], separator: string=' ')
  * @name max
  * @access public
  * @param {array} a The array to find the largest value in
- * @returns any
+ * @returns {string | number | null}
  */
-export function max(a: string[] | number[]): any {
+export function max(a: string[] | number[]): string | number | null {
 
 	// If we didn't get an array
 	if(!Array.isArray(a)) {
@@ -463,9 +463,9 @@ export function max(a: string[] | number[]): any {
  *
  * @name merge
  * @access public
- * @param {object} a The object to merge with b
- * @param {object} b The object to merge with a
- * @returns void
+ * @param {Object} a The object to merge with b
+ * @param {Object} b The object to merge with a
+ * @returns {void}
  */
 export function merge(a: Record<string, any>, b: Record<string, any>): void {
 
@@ -494,9 +494,9 @@ export function merge(a: Record<string, any>, b: Record<string, any>): void {
  * @name min
  * @access public
  * @param {array} a The array to find the largest value in
- * @returns any
+ * @returns {string | number | null}
  */
-export function min(a: string[] | number[]): any {
+export function min(a: string[] | number[]): string | number | null {
 
 	// If we didn't get an array
 	if(!Array.isArray(a)) {
@@ -548,7 +548,7 @@ export function min(a: string[] | number[]): any {
  * @name nicePhone
  * @access public
  * @param {string} val The digits of the phone number to convert
- * @return string
+ * @returns {string}
  */
 export function nicePhone(val: string): string {
 	const lMatch = _rePhone.exec(val);
@@ -566,9 +566,9 @@ export function nicePhone(val: string): string {
  *
  * @name omap
  * @access public
- * @param {object} o The object to map
+ * @param {Object} o The object to map
  * @param {function} callback The function to call each iteration
- * @return array
+ * @returns {Array}
  */
 export function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => {}): any[] {
 	const ret: any[] = [];
@@ -586,9 +586,9 @@ export function omap(o: Record<string, any>, callback: (v: any, k: string, i: nu
  *
  * @name opop
  * @access public
- * @param {object} o The object to pop from
+ * @param {Object} o The object to pop from
  * @param {string} name The name of the value to pop
- * @return any
+ * @returns {any}
  */
 export function opop(o: Record<string, any>, name: string): any {
 	const m = clone(o[name]);
@@ -604,7 +604,7 @@ export function opop(o: Record<string, any>, name: string): any {
  * @name parseQuery
  * @access public
  * @param {string} query The query string to parse
- * @returns object
+ * @returns {Object}
  */
 export function parseQuery(query: string): Record<string, any> {
 
@@ -757,12 +757,11 @@ export function parseQuery(query: string): Record<string, any> {
  * Sort By Key
  *
  * Returns a callback function that will compare two objects by the key name
- * pass
  *
  * @name sortByKey
  * @access public
  * @param {string} key The name of the key to sort by
- * @return function
+ * @returns {function}
  */
 export function sortByKey(key: string): (a:Record<string, any>, b:Record<string, any>) => {} {
 	return (a, b) => {
@@ -779,7 +778,7 @@ export function sortByKey(key: string): (a:Record<string, any>, b:Record<string,
  * @name ucfirst
  * @access public
  * @param {string} text The text to convert
- * @return string
+ * @returns {string}
  */
 export function ucfirst(text: string): string {
 	const lParts = text.split(' ');
