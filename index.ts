@@ -786,3 +786,11 @@ export function ucfirst(text: string): string {
 		s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
 	).join(' ');
 }
+
+// Default export
+const tools = {
+	afindi, afindo, ashift, bytesHuman, clone, combine, compare, divmod, empty,
+	isDecimal, isInteger, isNumeric, isObject, join, max, merge, min,
+	nicePhone, omap, opop, parseQuery, sortByKey, ucfirst
+};
+export default tools;

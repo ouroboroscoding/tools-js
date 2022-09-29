@@ -283,3 +283,29 @@ export declare function sortByKey(key: string): (a: Record<string, any>, b: Reco
  * @returns {string}
  */
 export declare function ucfirst(text: string): string;
+declare const tools: {
+    afindi: typeof afindi;
+    afindo: typeof afindo;
+    ashift: typeof ashift;
+    bytesHuman: typeof bytesHuman;
+    clone: typeof clone;
+    combine: typeof combine;
+    compare: typeof compare;
+    divmod: typeof divmod;
+    empty: typeof empty;
+    isDecimal: typeof isDecimal;
+    isInteger: typeof isInteger;
+    isNumeric: typeof isNumeric;
+    isObject: typeof isObject;
+    join: typeof join;
+    max: typeof max;
+    merge: typeof merge;
+    min: typeof min;
+    nicePhone: typeof nicePhone;
+    omap: typeof omap;
+    opop: typeof opop;
+    parseQuery: typeof parseQuery;
+    sortByKey: typeof sortByKey;
+    ucfirst: typeof ucfirst;
+};
+export default tools;
