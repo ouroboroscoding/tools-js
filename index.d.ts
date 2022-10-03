@@ -15,10 +15,10 @@
  *
  * @name afindi
  * @access public
- * @param {Array} a	The value to look through
- * @param {string} k The name of the key to check
- * @param {any} v The value to check against
- * @returns {number}
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @returns The index found, or -1
  */
 export declare function afindi(a: Record<string, any>[], k: string, v: any): number;
 /**
@@ -29,10 +29,10 @@ export declare function afindi(a: Record<string, any>[], k: string, v: any): num
  *
  * @name afindo
  * @access public
- * @param {Array} a The value to look through
- * @param {string} k The name of the key to check
- * @param {any} v The value to check against
- * @returns {Object}
+ * @param a The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @returns The object found, or null
  */
 export declare function afindo(a: Record<string, any>[], k: string, v: any): Record<string, any> | null;
 /**
@@ -42,10 +42,9 @@ export declare function afindo(a: Record<string, any>[], k: string, v: any): Rec
  *
  * @name ashift
  * @access public
- * @param {Array} arr The array to shift the item in
- * @param {number} from The current location of the item
- * @param {number} to The new location of the item
- * @returns {void}
+ * @param arr The array to shift the item in
+ * @param from The current location of the item
+ * @param to The new location of the item
  */
 export declare function ashift(arr: any[], from: number, to: number): void;
 /**
@@ -56,8 +55,8 @@ export declare function ashift(arr: any[], from: number, to: number): void;
  *
  * @name bytesHuman
  * @access public
- * @param {number} num The value in bytes to convert to human readable
- * @returns {string}
+ * @param num The value in bytes to convert to human readable
+ * @returns The string representation of the bytes
  */
 export declare function bytesHuman(num: number): string;
 /**
@@ -67,8 +66,8 @@ export declare function bytesHuman(num: number): string;
  *
  * @name clone
  * @access public
- * @param {any} o The variable to clone
- * @returns {any}
+ * @param o The variable to clone
+ * @returns The clone of o
  */
 export declare function clone(o: any): any;
 /**
@@ -79,9 +78,9 @@ export declare function clone(o: any): any;
  *
  * @name combine
  * @access public
- * @param {Object} a An object to be combined with b
- * @param {Object} b An object to be combined with a
- * @returns {Object}
+ * @param a An object to be combined with b
+ * @param b An object to be combined with a
+ * @returns A new object of a and b
  */
 export declare function combine(a: Record<string, any>, b: Record<string, any>): Record<string, any>;
 /**
@@ -92,11 +91,11 @@ export declare function combine(a: Record<string, any>, b: Record<string, any>):
  *
  * @name compare
  * @access public
- * @param {any} v1				The first value
- * @param {any} v2				The second value
- * @returns {boolean}
+ * @param a The first value
+ * @param b The second value
+ * @returns true if the same, otherwise false
  */
-export declare function compare(v1: any, v2: any): boolean;
+export declare function compare(a: any, b: any): boolean;
 /**
  * Divmod
  *
@@ -106,9 +105,9 @@ export declare function compare(v1: any, v2: any): boolean;
  *
  * @name divmod
  * @access public
- * @param {number} x The dividend
- * @param {number} y The divisor
- * @returns {Array}
+ * @param x The dividend
+ * @param y The divisor
+ * @returns an array of quotient (0) and remainder (1)
  */
 export declare function divmod(x: number, y: number): [number, number];
 /**
@@ -118,8 +117,8 @@ export declare function divmod(x: number, y: number): [number, number];
  *
  * @name empty
  * @access public
- * @param {any} m The value to check, can be object, array, string, etc
- * @returns {boolean}
+ * @param m The value to check, can be object, array, string, etc
+ * @returns true if empty
  */
 export declare function empty(m: any): boolean;
 /**
@@ -129,8 +128,8 @@ export declare function empty(m: any): boolean;
  *
  * @name isDecimal
  * @access public
- * @param {any} m The variable to test
- * @returns {boolean}
+ * @param m The variable to test
+ * @returns true if decimal
  */
 export declare function isDecimal(m: any): boolean;
 /**
@@ -140,8 +139,8 @@ export declare function isDecimal(m: any): boolean;
  *
  * @name isInteger
  * @access public
- * @param {any} m The variable to test
- * @returns {boolean}
+ * @param m The variable to test
+ * @returns true if integer
  */
 export declare function isInteger(m: any): boolean;
 /**
@@ -151,8 +150,8 @@ export declare function isInteger(m: any): boolean;
  *
  * @name isNumeric
  * @access public
- * @param {string} s The string to check
- * @returns {boolean}
+ * @param s The string to check
+ * @returns true if numeric
  */
 export declare function isNumeric(s: string): boolean;
 /**
@@ -162,8 +161,8 @@ export declare function isNumeric(s: string): boolean;
  *
  * @name isObject
  * @access public
- * @param {any} m The variable to test
- * @returns {boolean}
+ * @param m The variable to test
+ * @returns true if object
  */
 export declare function isObject(m: any): boolean;
 /**
@@ -174,10 +173,10 @@ export declare function isObject(m: any): boolean;
  *
  * @name join
  * @access public
- * @param {object} o The object to pull members from
- * @param {Array} l The list of members, in order, to join together
- * @param {string} separator Optional char/string to join with, defaults to space
- * @returns {string}
+ * @param o The object to pull members from
+ * @param l The list of members, in order, to join together
+ * @param separator Optional char/string to join with, defaults to space
+ * @returns The joined string
  */
 export declare function join(o: Record<string, any>, l: string[], separator?: string): string;
 /**
@@ -187,8 +186,8 @@ export declare function join(o: Record<string, any>, l: string[], separator?: st
  *
  * @name max
  * @access public
- * @param {array} a The array to find the largest value in
- * @returns {string | number | null}
+ * @param a The array to find the largest value in
+ * @returns the largest value
  */
 export declare function max(a: string[] | number[]): string | number | null;
 /**
@@ -198,9 +197,8 @@ export declare function max(a: string[] | number[]): string | number | null;
  *
  * @name merge
  * @access public
- * @param {Object} a The object to merge with b
- * @param {Object} b The object to merge with a
- * @returns {void}
+ * @param a The object to merge with b
+ * @param b The object to merge with a
  */
 export declare function merge(a: Record<string, any>, b: Record<string, any>): void;
 /**
@@ -210,8 +208,8 @@ export declare function merge(a: Record<string, any>, b: Record<string, any>): v
  *
  * @name min
  * @access public
- * @param {array} a The array to find the largest value in
- * @returns {string | number | null}
+ * @param a The array to find the largest value in
+ * @returns the smallest value
  */
 export declare function min(a: string[] | number[]): string | number | null;
 /**
@@ -221,8 +219,8 @@ export declare function min(a: string[] | number[]): string | number | null;
  *
  * @name nicePhone
  * @access public
- * @param {string} val The digits of the phone number to convert
- * @returns {string}
+ * @param val The digits of the phone number to convert
+ * @returns the phone number
  */
 export declare function nicePhone(val: string): string;
 /**
@@ -233,9 +231,9 @@ export declare function nicePhone(val: string): string;
  *
  * @name omap
  * @access public
- * @param {Object} o The object to map
- * @param {function} callback The function to call each iteration
- * @returns {Array}
+ * @param o The object to map
+ * @param callback The function to call each iteration
+ * @returns a new array of each processed object
  */
 export declare function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => {}): any[];
 /**
@@ -245,9 +243,9 @@ export declare function omap(o: Record<string, any>, callback: (v: any, k: strin
  *
  * @name opop
  * @access public
- * @param {Object} o The object to pop from
- * @param {string} name The name of the value to pop
- * @returns {any}
+ * @param o The object to pop from
+ * @param name The name of the value to pop
+ * @returns the value in `name`
  */
 export declare function opop(o: Record<string, any>, name: string): any;
 /**
@@ -257,10 +255,46 @@ export declare function opop(o: Record<string, any>, name: string): any;
  *
  * @name parseQuery
  * @access public
- * @param {string} query The query string to parse
- * @returns {Object}
+ * @param query The query string to parse
+ * @returns name/value pairs
  */
 export declare function parseQuery(query: string): Record<string, any>;
+/**
+ * Random
+ *
+ * Generates a random string. By default this function will generate an 8
+ * character string using lowercase letters with possible repeating characters
+ *
+ * Available sets:
+ *  0x: 0123456789abcdef
+ *  0:  01234567
+ *  10: 0123456789
+ *  az: abcdefghijklmnopqrstuvwxyz
+ *  az*:abcdefghijkmnopqrstuvwxyz
+ *  AZ: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ *  AZ*:ABCDEFGHJKLMNPQRSTUVWXYZ
+ *  aZ: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+ *  aZ*:abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ
+ *  !:  !@#$%^&*-_+.?
+ *  !*: !@$%^*-_.
+ *
+ * Sets with * remove problematic characters that can cause issues in humans or
+ * computer systems, such as 0 (zero) or O (oh), and & which messes up HTML/URLs
+ *
+ * @name random
+ * @access public
+ * @param length The length requested for the generated string
+ * @param sets A list of names from the standard sets, or any string to be used
+ *             as an array of characters to chose from. If you want certain
+ *             characters to have a greater chance of appearing, use them more
+ *             times, e.g. twice the 'A's, "AABC", or three times the 'B's,
+ *             "ABBBC". Make sure not to turn off duplicates for this to be
+ *             effective. Defaults to set "aZ"
+ * @param duplicates If true, allows the same character to be used more than
+ *                   once
+ * @returns the generated random string
+ */
+export declare function random(length: number, sets?: string | string[], duplicates?: boolean): string;
 /**
  * Sort By Key
  *
@@ -268,8 +302,8 @@ export declare function parseQuery(query: string): Record<string, any>;
  *
  * @name sortByKey
  * @access public
- * @param {string} key The name of the key to sort by
- * @returns {function}
+ * @param key The name of the key to sort by
+ * @returns the function
  */
 export declare function sortByKey(key: string): (a: Record<string, any>, b: Record<string, any>) => {};
 /**
@@ -279,8 +313,8 @@ export declare function sortByKey(key: string): (a: Record<string, any>, b: Reco
  *
  * @name ucfirst
  * @access public
- * @param {string} text The text to convert
- * @returns {string}
+ * @param text The text to convert
+ * @returns the converted text
  */
 export declare function ucfirst(text: string): string;
 declare const tools: {
@@ -305,6 +339,7 @@ declare const tools: {
     omap: typeof omap;
     opop: typeof opop;
     parseQuery: typeof parseQuery;
+    random: typeof random;
     sortByKey: typeof sortByKey;
     ucfirst: typeof ucfirst;
 };
