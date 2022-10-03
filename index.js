@@ -20,10 +20,10 @@ const _reQueryName = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/;
  *
  * @name afindi
  * @access public
- * @param {Array} a	The value to look through
- * @param {string} k The name of the key to check
- * @param {any} v The value to check against
- * @returns {number}
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @returns The index found, or -1
  */
 export function afindi(a, k, v) {
     for (let i = 0; i < a.length; ++i) {
@@ -41,10 +41,10 @@ export function afindi(a, k, v) {
  *
  * @name afindo
  * @access public
- * @param {Array} a The value to look through
- * @param {string} k The name of the key to check
- * @param {any} v The value to check against
- * @returns {Object}
+ * @param a The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @returns The object found, or null
  */
 export function afindo(a, k, v) {
     for (const o of a) {
@@ -61,10 +61,9 @@ export function afindo(a, k, v) {
  *
  * @name ashift
  * @access public
- * @param {Array} arr The array to shift the item in
- * @param {number} from The current location of the item
- * @param {number} to The new location of the item
- * @returns {void}
+ * @param arr The array to shift the item in
+ * @param from The current location of the item
+ * @param to The new location of the item
  */
 export function ashift(arr, from, to) {
     if (from >= 0 && from < arr.length) {
@@ -80,8 +79,8 @@ export function ashift(arr, from, to) {
  *
  * @name bytesHuman
  * @access public
- * @param {number} num The value in bytes to convert to human readable
- * @returns {string}
+ * @param num The value in bytes to convert to human readable
+ * @returns The string representation of the bytes
  */
 export function bytesHuman(num) {
     for (const unit of ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']) {
@@ -99,8 +98,8 @@ export function bytesHuman(num) {
  *
  * @name clone
  * @access public
- * @param {any} o The variable to clone
- * @returns {any}
+ * @param o The variable to clone
+ * @returns The clone of o
  */
 export function clone(o) {
     // New var
@@ -134,9 +133,9 @@ export function clone(o) {
  *
  * @name combine
  * @access public
- * @param {Object} a An object to be combined with b
- * @param {Object} b An object to be combined with a
- * @returns {Object}
+ * @param a An object to be combined with b
+ * @param b An object to be combined with a
+ * @returns A new object of a and b
  */
 export function combine(a, b) {
     // Copy the first object
@@ -165,40 +164,40 @@ export function combine(a, b) {
  *
  * @name compare
  * @access public
- * @param {any} v1				The first value
- * @param {any} v2				The second value
- * @returns {boolean}
+ * @param a The first value
+ * @param b The second value
+ * @returns true if the same, otherwise false
  */
-export function compare(v1, v2) {
+export function compare(a, b) {
     // If they're both arrays
-    if (Array.isArray(v1) && Array.isArray(v2)) {
+    if (Array.isArray(a) && Array.isArray(b)) {
         // If they don't have the same length
-        if (v1.length !== v2.length) {
+        if (a.length !== b.length) {
             return false;
         }
         // Compare the values
-        for (let i = 0; i < v1.length; ++i) {
-            if (!compare(v1[i], v2[i])) {
+        for (let i = 0; i < a.length; ++i) {
+            if (!compare(a[i], b[i])) {
                 return false;
             }
         }
     }
     // Else if they're both objects
-    else if (isObject(v1) && isObject(v2)) {
+    else if (isObject(a) && isObject(b)) {
         // If they don't have the same keys
-        if (!compare(Object.keys(v1).sort(), Object.keys(v2).sort())) {
+        if (!compare(Object.keys(a).sort(), Object.keys(b).sort())) {
             return false;
         }
         // Compare each key
-        for (const k in v1) {
-            if (!compare(v1[k], v2[k])) {
+        for (const k in a) {
+            if (!compare(a[k], b[k])) {
                 return false;
             }
         }
     }
     // Else, compare as is
     else {
-        if (v1 !== v2) {
+        if (a !== b) {
             return false;
         }
     }
@@ -214,9 +213,9 @@ export function compare(v1, v2) {
  *
  * @name divmod
  * @access public
- * @param {number} x The dividend
- * @param {number} y The divisor
- * @returns {Array}
+ * @param x The dividend
+ * @param y The divisor
+ * @returns an array of quotient (0) and remainder (1)
  */
 export function divmod(x, y) {
     /* tslint:disable:no-bitwise */
@@ -233,8 +232,8 @@ export function divmod(x, y) {
  *
  * @name empty
  * @access public
- * @param {any} m The value to check, can be object, array, string, etc
- * @returns {boolean}
+ * @param m The value to check, can be object, array, string, etc
+ * @returns true if empty
  */
 export function empty(m) {
     // If it's an object
@@ -265,8 +264,8 @@ export function empty(m) {
  *
  * @name isDecimal
  * @access public
- * @param {any} m The variable to test
- * @returns {boolean}
+ * @param m The variable to test
+ * @returns true if decimal
  */
 export function isDecimal(m) {
     return typeof m === 'number';
@@ -278,8 +277,8 @@ export function isDecimal(m) {
  *
  * @name isInteger
  * @access public
- * @param {any} m The variable to test
- * @returns {boolean}
+ * @param m The variable to test
+ * @returns true if integer
  */
 export function isInteger(m) {
     /* tslint:disable:no-bitwise */
@@ -293,8 +292,8 @@ export function isInteger(m) {
  *
  * @name isNumeric
  * @access public
- * @param {string} s The string to check
- * @returns {boolean}
+ * @param s The string to check
+ * @returns true if numeric
  */
 export function isNumeric(s) {
     // Get the type of the argument
@@ -319,8 +318,8 @@ export function isNumeric(s) {
  *
  * @name isObject
  * @access public
- * @param {any} m The variable to test
- * @returns {boolean}
+ * @param m The variable to test
+ * @returns true if object
  */
 export function isObject(m) {
     if (m === null)
@@ -339,10 +338,10 @@ export function isObject(m) {
  *
  * @name join
  * @access public
- * @param {object} o The object to pull members from
- * @param {Array} l The list of members, in order, to join together
- * @param {string} separator Optional char/string to join with, defaults to space
- * @returns {string}
+ * @param o The object to pull members from
+ * @param l The list of members, in order, to join together
+ * @param separator Optional char/string to join with, defaults to space
+ * @returns The joined string
  */
 export function join(o, l, separator = ' ') {
     // Init the array of found members
@@ -364,8 +363,8 @@ export function join(o, l, separator = ' ') {
  *
  * @name max
  * @access public
- * @param {array} a The array to find the largest value in
- * @returns {string | number | null}
+ * @param a The array to find the largest value in
+ * @returns the largest value
  */
 export function max(a) {
     // If we didn't get an array
@@ -408,9 +407,8 @@ export function max(a) {
  *
  * @name merge
  * @access public
- * @param {Object} a The object to merge with b
- * @param {Object} b The object to merge with a
- * @returns {void}
+ * @param a The object to merge with b
+ * @param b The object to merge with a
  */
 export function merge(a, b) {
     // Get each key of the second dict
@@ -433,8 +431,8 @@ export function merge(a, b) {
  *
  * @name min
  * @access public
- * @param {array} a The array to find the largest value in
- * @returns {string | number | null}
+ * @param a The array to find the largest value in
+ * @returns the smallest value
  */
 export function min(a) {
     // If we didn't get an array
@@ -477,8 +475,8 @@ export function min(a) {
  *
  * @name nicePhone
  * @access public
- * @param {string} val The digits of the phone number to convert
- * @returns {string}
+ * @param val The digits of the phone number to convert
+ * @returns the phone number
  */
 export function nicePhone(val) {
     const lMatch = _rePhone.exec(val);
@@ -495,9 +493,9 @@ export function nicePhone(val) {
  *
  * @name omap
  * @access public
- * @param {Object} o The object to map
- * @param {function} callback The function to call each iteration
- * @returns {Array}
+ * @param o The object to map
+ * @param callback The function to call each iteration
+ * @returns a new array of each processed object
  */
 export function omap(o, callback) {
     const ret = [];
@@ -514,9 +512,9 @@ export function omap(o, callback) {
  *
  * @name opop
  * @access public
- * @param {Object} o The object to pop from
- * @param {string} name The name of the value to pop
- * @returns {any}
+ * @param o The object to pop from
+ * @param name The name of the value to pop
+ * @returns the value in `name`
  */
 export function opop(o, name) {
     const m = clone(o[name]);
@@ -530,8 +528,8 @@ export function opop(o, name) {
  *
  * @name parseQuery
  * @access public
- * @param {string} query The query string to parse
- * @returns {Object}
+ * @param query The query string to parse
+ * @returns name/value pairs
  */
 export function parseQuery(query) {
     // Init the return value
@@ -644,6 +642,103 @@ export function parseQuery(query) {
     // Return the name/value pairs found
     return oRet;
 }
+// The sets available for the random function
+const _oRandomSets = {
+    "0x": "0123456789abcdef",
+    "0": "01234567",
+    "10": "0123456789",
+    "10*": "123456789",
+    "az": "abcdefghijklmnopqrstuvwxyz",
+    "az*": "abcdefghijkmnopqrstuvwxyz",
+    "AZ": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "AZ*": "ABCDEFGHJKLMNPQRSTUVWXYZ",
+    "aZ": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "aZ*": "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ",
+    "!": "!@#$%^&*-_+.?",
+    "!*": "!@$^*-_."
+};
+/**
+ * Random
+ *
+ * Generates a random string. By default this function will generate an 8
+ * character string using lowercase letters with possible repeating characters
+ *
+ * Available sets:
+ *  0x: 0123456789abcdef
+ *  0:  01234567
+ *  10: 0123456789
+ *  az: abcdefghijklmnopqrstuvwxyz
+ *  az*:abcdefghijkmnopqrstuvwxyz
+ *  AZ: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ *  AZ*:ABCDEFGHJKLMNPQRSTUVWXYZ
+ *  aZ: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+ *  aZ*:abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ
+ *  !:  !@#$%^&*-_+.?
+ *  !*: !@$%^*-_.
+ *
+ * Sets with * remove problematic characters that can cause issues in humans or
+ * computer systems, such as 0 (zero) or O (oh), and & which messes up HTML/URLs
+ *
+ * @name random
+ * @access public
+ * @param length The length requested for the generated string
+ * @param sets A list of names from the standard sets, or any string to be used
+ *             as an array of characters to chose from. If you want certain
+ *             characters to have a greater chance of appearing, use them more
+ *             times, e.g. twice the 'A's, "AABC", or three times the 'B's,
+ *             "ABBBC". Make sure not to turn off duplicates for this to be
+ *             effective. Defaults to set "aZ"
+ * @param duplicates If true, allows the same character to be used more than
+ *                   once
+ * @returns the generated random string
+ */
+export function random(length, sets = ['aZ'], duplicates = true) {
+    // Init the character array
+    let chars = '';
+    // If we got a list
+    if (Array.isArray(sets)) {
+        // If it's empty
+        if (sets.length === 0) {
+            throw new Error('sets must contain at least one set name');
+        }
+        // Go through the list of passed sets
+        for (const s of sets) {
+            // If s is not a string
+            if (typeof s !== 'string') {
+                throw new Error(`${s} is not a string`);
+            }
+            // If the set doesn't exist
+            if (!(s in _oRandomSets)) {
+                throw new Error(`${s} is not a valid set`);
+            }
+            // Else, add it to the allowed characters
+            chars += _oRandomSets[s];
+        }
+    }
+    // Else if we have a string, use it as the character set
+    else if (typeof sets === 'string') {
+        chars = sets;
+    }
+    // Else, the value of sets is invalid
+    else {
+        throw new Error(`${sets} is not a valid value for sets argument of random`);
+    }
+    // Init the return variable
+    let text = '';
+    // Create a `length` of random character
+    while (text.length < length) {
+        const found = chars.charAt(Math.floor(Math.random() * chars.length));
+        // If we don't allow duplicates, and the character is already found,
+        //  loop back around
+        if (!duplicates && text.includes(found)) {
+            continue;
+        }
+        // Add the character
+        text += found;
+    }
+    // Return the generated string
+    return text;
+}
 /**
  * Sort By Key
  *
@@ -651,8 +746,8 @@ export function parseQuery(query) {
  *
  * @name sortByKey
  * @access public
- * @param {string} key The name of the key to sort by
- * @returns {function}
+ * @param key The name of the key to sort by
+ * @returns the function
  */
 export function sortByKey(key) {
     return (a, b) => {
@@ -669,8 +764,8 @@ export function sortByKey(key) {
  *
  * @name ucfirst
  * @access public
- * @param {string} text The text to convert
- * @returns {string}
+ * @param text The text to convert
+ * @returns the converted text
  */
 export function ucfirst(text) {
     const lParts = text.split(' ');
@@ -680,6 +775,6 @@ export function ucfirst(text) {
 const tools = {
     afindi, afindo, ashift, bytesHuman, clone, combine, compare, divmod, empty,
     isDecimal, isInteger, isNumeric, isObject, join, max, merge, min,
-    nicePhone, omap, opop, parseQuery, sortByKey, ucfirst
+    nicePhone, omap, opop, parseQuery, random, sortByKey, ucfirst
 };
 export default tools;
