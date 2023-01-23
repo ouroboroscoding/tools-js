@@ -249,6 +249,18 @@ export declare function omap(o: Record<string, any>, callback: (v: any, k: strin
  */
 export declare function opop(o: Record<string, any>, name: string): any;
 /**
+ * Object Without
+ *
+ * Takes an object and removes the give key, or keys, from it and returs a copy
+ * of it
+ *
+ * @name owithout
+ * @param o The object to remove keys from
+ * @param keys The key, or keys, to remove from the object
+ * @returns a copy of the object without the keys
+ */
+export declare function owithout(o: Record<string, any>, keys: string | string[]): Record<string, any>;
+/**
  * Parse Query
  *
  * Turns a query string into an object
@@ -338,6 +350,7 @@ declare const tools: {
     nicePhone: typeof nicePhone;
     omap: typeof omap;
     opop: typeof opop;
+    owithout: typeof owithout;
     parseQuery: typeof parseQuery;
     random: typeof random;
     sortByKey: typeof sortByKey;
