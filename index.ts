@@ -595,6 +595,39 @@ export function opop(o: Record<string, any>, name: string): any {
 }
 
 /**
+ * Object Without
+ *
+ * Takes an object and removes the give key, or keys, from it and returs a copy
+ * of it
+ *
+ * @name owithout
+ * @param o The object to remove keys from
+ * @param keys The key, or keys, to remove from the object
+ * @returns a copy of the object without the keys
+ */
+export function owithout(o: Record<string, any>, keys: string | string[]): Record<string, any> {
+
+	// Clone the object
+	const ret = clone(o);
+
+	// If we have a single string
+	if(typeof keys === 'string') {
+		delete ret[keys];
+	}
+
+	// Else, if we have multiple
+	else if(Array.isArray(keys)) {
+		for(const k of keys) {
+			delete ret[k];
+		}
+	}
+
+	// Return the new object
+	return ret;
+
+}
+
+/**
  * Parse Query
  *
  * Turns a query string into an object
@@ -902,6 +935,6 @@ export function ucfirst(text: string): string {
 const tools = {
 	afindi, afindo, ashift, bytesHuman, clone, combine, compare, divmod, empty,
 	isDecimal, isInteger, isNumeric, isObject, join, max, merge, min,
-	nicePhone, omap, opop, parseQuery, random, sortByKey, ucfirst
+	nicePhone, omap, opop, owithout, parseQuery, random, sortByKey, ucfirst
 };
 export default tools;
