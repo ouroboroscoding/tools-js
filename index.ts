@@ -98,6 +98,17 @@ export function bytesHuman(num: number): string {
 }
 
 /**
+ * Do Not Clone Classes
+ *
+ * Holds class types that should be skipped (copied as is) instead of cloned as
+ * if they were objects
+ *
+ * @name _doNotCloneClasses
+ * @access private
+ */
+const _doNotCloneClasses = [Date, RegExp];
+
+/**
  * Clone
  *
  * Deep clone any type of object, returning a new one
@@ -112,29 +123,54 @@ export function clone(o: any): any {
 	// New var
 	let n: any = null;
 
-	// If it's an array
-	if(Array.isArray(o)) {
-		n = [];
-		for(const i of o) {
-			n.push(clone(i));
+	// If it's in the list of classes
+	for(const c of _doNotCloneClasses) {
+		if(o instanceof c) {
+			n = o;
+			break;
 		}
 	}
 
-	// Else if the value is an object
-	else if(isObject(o)) {
-		n = {};
-		for(const k of Object.keys(o)) {
-			n[k] = clone(o[k]);
-		}
-	}
+	// If we don't have a value
+	if(n === null) {
 
-	// Else, copy as is
-	else {
-		n = o;
+		// If it's an array
+		if(Array.isArray(o)) {
+			n = [];
+			for(const i of o) {
+				n.push(clone(i));
+			}
+		}
+
+		// Else if the value is an object
+		else if(isObject(o)) {
+			n = {};
+			for(const k of Object.keys(o)) {
+				n[k] = clone(o[k]);
+			}
+		}
+
+		// Else, copy as is
+		else {
+			n = o;
+		}
 	}
 
 	// Return the new var
 	return n;
+}
+
+/**
+ * Clone Add Class
+ *
+ * Adds classes that the clone function will skip instead of attempting to clone
+ *
+ * @name cloneAddClass
+ * @access public
+ * @param c The class to add that will be skipped during clone calls
+ */
+export function cloneAddClass(c: any): void {
+	_doNotCloneClasses.push(c);
 }
 
 /**
@@ -933,8 +969,8 @@ export function ucfirst(text: string): string {
 
 // Default export
 const tools = {
-	afindi, afindo, ashift, bytesHuman, clone, combine, compare, divmod, empty,
-	isDecimal, isInteger, isNumeric, isObject, join, max, merge, min,
-	nicePhone, omap, opop, owithout, parseQuery, random, sortByKey, ucfirst
+	afindi, afindo, ashift, bytesHuman, clone, cloneAddClass, combine, compare,
+	divmod, empty, isDecimal, isInteger, isNumeric, isObject, join, max, merge,
+	min, nicePhone, omap, opop, owithout, parseQuery, random, sortByKey, ucfirst
 };
 export default tools;
