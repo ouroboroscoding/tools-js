@@ -114,23 +114,30 @@ const _doNotCloneClasses = [Date, RegExp];
 export function clone(o) {
     // New var
     let n = null;
-    // If it's in the list of classes
-    for (const c of _doNotCloneClasses) {
-        if (o instanceof c) {
-            n = o;
-            break;
+    // If it's an instance of a class with a _CLONE_SKIP_ flag on it, copy it
+    //	as is
+    if (o && o._CLONE_SKIP_) {
+        n = o;
+    }
+    // Else, if it's in the list of classes
+    else {
+        for (const c of _doNotCloneClasses) {
+            if (o instanceof c) {
+                n = o;
+                break;
+            }
         }
     }
-    // If we don't have a value
+    // If we didn't copy the value as is
     if (n === null) {
-        // If it's an array
+        // If it's an array, go through each index and clone it
         if (Array.isArray(o)) {
             n = [];
             for (const i of o) {
                 n.push(clone(i));
             }
         }
-        // Else if the value is an object
+        // Else if the value is an object, go through each key and clone it
         else if (isObject(o)) {
             n = {};
             for (const k of Object.keys(o)) {

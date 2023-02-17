@@ -20,7 +20,7 @@
  * @param v The value to check against
  * @returns The index found, or -1
  */
-export declare function afindi(a: Record<string, any>[], k: string, v: any): number;
+export declare function afindi(a: Record<string, any>[], k: string | number, v: any): number;
 /**
  * Array Find Object
  *
@@ -34,7 +34,7 @@ export declare function afindi(a: Record<string, any>[], k: string, v: any): num
  * @param v The value to check against
  * @returns The object found, or null
  */
-export declare function afindo(a: Record<string, any>[], k: string, v: any): Record<string, any> | null;
+export declare function afindo(a: Record<string, any>[], k: string | number, v: any): Record<string, any> | null;
 /**
  * Array Shift
  *
