@@ -408,10 +408,19 @@ export function isNumeric(s: string): boolean {
  * @returns true if object
  */
 export function isObject(m: any): boolean {
-	if(m === null) return false;
-	if(typeof m !== 'object') return false;
-	if(Array.isArray(m)) return false;
-	return true;
+
+	// If it's null, it's not an object
+	if(m === null) {
+		return false;
+	}
+
+	// If the type is not an object
+	if(typeof m !== 'object') {
+		return false;
+	}
+
+	// Return based on what toString returns
+	return (Object.prototype.toString.call(m) === '[object Object]');
 }
 
 /**
