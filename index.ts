@@ -27,7 +27,7 @@ const _reQueryName: RegExp = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/
  * @param v The value to check against
  * @returns The index found, or -1
  */
-export function afindi(a: Record<string, any>[], k: string, v: any): number {
+export function afindi(a: Record<string, any>[], k: string | number, v: any): number {
 	for(let i: number = 0; i < a.length; ++i) {
 		if(a[i][k] === v) {
 			return i;
@@ -49,7 +49,7 @@ export function afindi(a: Record<string, any>[], k: string, v: any): number {
  * @param v The value to check against
  * @returns The object found, or null
  */
-export function afindo(a: Record<string, any>[], k: string, v: any): Record<string, any> | null {
+export function afindo(a: Record<string, any>[], k: string | number, v: any): Record<string, any> | null {
 	for(const o of a) {
 		if(o[k] === v) {
 			return o;
@@ -123,18 +123,26 @@ export function clone(o: any): any {
 	// New var
 	let n: any = null;
 
-	// If it's in the list of classes
-	for(const c of _doNotCloneClasses) {
-		if(o instanceof c) {
-			n = o;
-			break;
+	// If it's an instance of a class with a _CLONE_SKIP_ flag on it, copy it
+	//	as is
+	if(o && o._CLONE_SKIP_) {
+		n = o;
+	}
+
+	// Else, if it's in the list of classes
+	else {
+		for(const c of _doNotCloneClasses) {
+			if(o instanceof c) {
+				n = o;
+				break;
+			}
 		}
 	}
 
-	// If we don't have a value
+	// If we didn't copy the value as is
 	if(n === null) {
 
-		// If it's an array
+		// If it's an array, go through each index and clone it
 		if(Array.isArray(o)) {
 			n = [];
 			for(const i of o) {
@@ -142,7 +150,7 @@ export function clone(o: any): any {
 			}
 		}
 
-		// Else if the value is an object
+		// Else if the value is an object, go through each key and clone it
 		else if(isObject(o)) {
 			n = {};
 			for(const k of Object.keys(o)) {
@@ -400,10 +408,19 @@ export function isNumeric(s: string): boolean {
  * @returns true if object
  */
 export function isObject(m: any): boolean {
-	if(m === null) return false;
-	if(typeof m !== 'object') return false;
-	if(Array.isArray(m)) return false;
-	return true;
+
+	// If it's null, it's not an object
+	if(m === null) {
+		return false;
+	}
+
+	// If the type is not an object
+	if(typeof m !== 'object') {
+		return false;
+	}
+
+	// Return based on what toString returns
+	return (Object.prototype.toString.call(m) === '[object Object]');
 }
 
 /**
