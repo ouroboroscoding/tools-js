@@ -120,26 +120,34 @@ const _doNotCloneClasses = [Date, RegExp];
  */
 export function clone(o: any): any {
 
-	// New var
+	// The new returned variable
 	let n: any = null;
 
-	// If it's an instance of a class with a _CLONE_SKIP_ flag on it, copy it
-	//	as is
-	if(o && o._CLONE_SKIP_) {
-		n = o;
-	}
+	// If it's an instance of a class
+	if(o && o.constructor) {
 
-	// Else, if it's in the list of classes
-	else {
-		for(const c of _doNotCloneClasses) {
-			if(o instanceof c) {
-				n = o;
-				break;
+		// If it has a clone method
+		if(o.clone) {
+			n = o.clone();
+		}
+
+		// Else, if it has the TOOLS_CLONE_SKIP flag on it
+		else if(o.constructor.TOOLS_CLONE_SKIP) {
+			n = o;
+		}
+
+		// Else, if it's in the list of classes to be skipped
+		else {
+			for(const c of _doNotCloneClasses) {
+				if(o instanceof c) {
+					n = o;
+					break;
+				}
 			}
 		}
 	}
 
-	// If we didn't copy the value as is
+	// If we didn't find the value yet
 	if(n === null) {
 
 		// If it's an array, go through each index and clone it
@@ -419,8 +427,8 @@ export function isObject(m: any): boolean {
 		return false;
 	}
 
-	// Return based on what toString returns
-	return (Object.prototype.toString.call(m) === '[object Object]');
+	// Return based on the constructor name
+	return (m.constructor && m.constructor.name === 'Object');
 }
 
 /**
