@@ -60,27 +60,6 @@ export declare function ashift(arr: any[], from: number, to: number): void;
  */
 export declare function bytesHuman(num: number): string;
 /**
- * Clone
- *
- * Deep clone any type of object, returning a new one
- *
- * @name clone
- * @access public
- * @param o The variable to clone
- * @returns The clone of o
- */
-export declare function clone(o: any): any;
-/**
- * Clone Add Class
- *
- * Adds classes that the clone function will skip instead of attempting to clone
- *
- * @name cloneAddClass
- * @access public
- * @param c The class to add that will be skipped during clone calls
- */
-export declare function cloneAddClass(c: any): void;
-/**
  * Combine
  *
  * Combines two objects into a new one and returns it. If there are any
@@ -344,8 +323,6 @@ declare const tools: {
     afindo: typeof afindo;
     ashift: typeof ashift;
     bytesHuman: typeof bytesHuman;
-    clone: typeof clone;
-    cloneAddClass: typeof cloneAddClass;
     combine: typeof combine;
     compare: typeof compare;
     divmod: typeof divmod;
