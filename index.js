@@ -7,6 +7,8 @@
  * @copyright Ouroboros Coding Inc.
  * @created 2018-11-25
  */
+// Ouroboros modules
+import clone from '@ouroboros/clone';
 // Regex
 const _reNumeric = /^\d+$/;
 const _rePhone = /^1?(\d{3})(\d{3})(\d{4})$/;
@@ -90,85 +92,6 @@ export function bytesHuman(num) {
         num /= 1024.0;
     }
     return `${num.toFixed(1)}YiB`;
-}
-/**
- * Do Not Clone Classes
- *
- * Holds class types that should be skipped (copied as is) instead of cloned as
- * if they were objects
- *
- * @name _doNotCloneClasses
- * @access private
- */
-const _doNotCloneClasses = [Date, RegExp];
-/**
- * Clone
- *
- * Deep clone any type of object, returning a new one
- *
- * @name clone
- * @access public
- * @param o The variable to clone
- * @returns The clone of o
- */
-export function clone(o) {
-    // The new returned variable
-    let n = null;
-    // If it's an instance of a class
-    if (o && o.constructor) {
-        // If it has a clone method
-        if (o.clone) {
-            n = o.clone();
-        }
-        // Else, if it has the TOOLS_CLONE_SKIP flag on it
-        else if (o.constructor.TOOLS_CLONE_SKIP) {
-            n = o;
-        }
-        // Else, if it's in the list of classes to be skipped
-        else {
-            for (const c of _doNotCloneClasses) {
-                if (o instanceof c) {
-                    n = o;
-                    break;
-                }
-            }
-        }
-    }
-    // If we didn't find the value yet
-    if (n === null) {
-        // If it's an array, go through each index and clone it
-        if (Array.isArray(o)) {
-            n = [];
-            for (const i of o) {
-                n.push(clone(i));
-            }
-        }
-        // Else if the value is an object, go through each key and clone it
-        else if (isObject(o)) {
-            n = {};
-            for (const k of Object.keys(o)) {
-                n[k] = clone(o[k]);
-            }
-        }
-        // Else, copy as is
-        else {
-            n = o;
-        }
-    }
-    // Return the new var
-    return n;
-}
-/**
- * Clone Add Class
- *
- * Adds classes that the clone function will skip instead of attempting to clone
- *
- * @name cloneAddClass
- * @access public
- * @param c The class to add that will be skipped during clone calls
- */
-export function cloneAddClass(c) {
-    _doNotCloneClasses.push(c);
 }
 /**
  * Combine
@@ -848,8 +771,8 @@ export function ucfirst(text) {
 }
 // Default export
 const tools = {
-    afindi, afindo, ashift, bytesHuman, clone, cloneAddClass, combine, compare,
-    divmod, empty, isDecimal, isInteger, isNumeric, isObject, join, max, merge,
-    min, nicePhone, omap, opop, owithout, parseQuery, random, sortByKey, ucfirst
+    afindi, afindo, ashift, bytesHuman, combine, compare, divmod, empty,
+    isDecimal, isInteger, isNumeric, isObject, join, max, merge, min, nicePhone,
+    omap, opop, owithout, parseQuery, random, sortByKey, ucfirst
 };
 export default tools;

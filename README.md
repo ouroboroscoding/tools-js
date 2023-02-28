@@ -73,19 +73,6 @@ const bytes = 1073741824; // 1024 * 1024 * 1024
 // s = '1.0GiB'
 const s = bytesHuman(bytes);
 ```
-### clone
-Does a deep copy of pure data arrays and objects. In other words, it will not work as expected if any of the data at any level is class instances or other complex types.
-```javascript
-import { clone } from '@ouroboros/tools';
-
-const a = {hello: ['w', 'o', 'r', 'l', 'd']};
-
-// b = { hello: ['w', 'o', 'r', 'l', 'd'] }
-const b = clone(a)
-
-// false, as they are not the same object anymore
-a === b
-```
 ### combine
 Combines two objects into a new one and returns it. If there are any duplicate keys, those in "a" are overwritten by those in "b".
 ```javascript
