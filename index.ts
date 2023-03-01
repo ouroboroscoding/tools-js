@@ -569,8 +569,7 @@ export function opop(o: Record<string, any>, name: string): any {
 /**
  * Object Without
  *
- * Takes an object and removes the give key, or keys, from it and returs a copy
- * of it
+ * Takes an object and removes the given key(s) from it and returns a copy of it
  *
  * @name owithout
  * @param o The object to remove keys from
@@ -846,6 +845,12 @@ export function random(length: number, sets: string | string[] = ['aZ'], duplica
 	// Else, the value of sets is invalid
 	else {
 		throw new Error(`${sets} is not a valid value for sets argument of random`);
+	}
+
+	// If we don't allow duplicates, and the length of available characters is
+	//	less than the expected length, throw an error
+	if(!duplicates && chars.length < length) {
+		throw new Error(`Can not generate random string with no duplicates from the given sets "${chars}"`)
 	}
 
 	// Init the return variable
