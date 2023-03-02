@@ -82,7 +82,7 @@ const a = {hello: 'world', one: 1, three: 4};
 const b = {two: 2, three: 3}
 
 // c = { hello: 'world', one: 1, three: 3, two: 2 }
-const c = combibe(a, b);
+const c = combine(a, b);
 ```
 
 ### compare
@@ -292,6 +292,20 @@ let o = {one: 1, two: 2, three: 3};
 let i = opop(o, 'two');
 ```
 
+### owithout
+Takes an object and removes the given key(s) from it and returns a copy of it
+```javascript
+import { owithout } from '@ouroboros/tools';
+
+let o1 = {'one': 1, 'two': 2, 'three': 3}
+
+// {'one': 1, 'two': 2}
+owithout(o1, 'three');
+
+// {'two': 2}
+owithout(o1, ['one', 'three']);
+```
+
 ### parseQuery
 Turns a query string into an object.
 ```javascript
@@ -325,6 +339,57 @@ let people = [
 // ]
 people.sort(sortByKey('first'));
 ```
+### random
+Generates random strings
+```javascript
+import { random } from '@ouroboros/tools';
+
+// 'YBHhTfsy'
+random(8)
+
+// Generate a 4 character string from 'abcd', allow duplicates
+// 'ccdb'
+random(4, 'abcd')
+
+// Generate a 4 character string from 'abcd', don't allow duplicates
+// 'cdab'
+random(4, 'abcd', false);
+
+// Throws Error, not enough available characters
+random(10, '01234567', false);
+```
+`random` also has predefined sets of characters which can be used
+
+    0x    0123456789abcdef
+    0     01234567
+    10    0123456789
+    az    abcdefghijklmnopqrstuvwxyz
+    az*   abcdefghijkmnopqrstuvwxyz
+    AZ    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    AZ*   ABCDEFGHJKLMNPQRSTUVWXYZ
+    aZ    abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    aZ*   abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ
+    !     !@#$%^&*-_+.?
+    !*    !@$%^*-_.
+
+```javascript
+// Use hexedecimal characters
+// '961f37208cae'
+random(12, ['0x'])
+
+// Use all letters, lower and upper case, and decimal numbers
+// 'TP8KEFTvlgqTnxK1CVi1'
+random(20, ['aZ', '10'])
+
+// Use special characters, and hexedecimal characters
+// '!c66c_&b'
+random(8, ['!', '0x'])
+
+// Use special characters, and hexedecimal characters, no duplicates
+// '*.c#ab46'
+random(8, ['!', '0x'], false)
+```
+
 ### ucfirst
 Makes the first character of each word in the text upper case.
 ```javascript

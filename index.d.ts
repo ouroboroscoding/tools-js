@@ -240,8 +240,7 @@ export declare function opop(o: Record<string, any>, name: string): any;
 /**
  * Object Without
  *
- * Takes an object and removes the give key, or keys, from it and returs a copy
- * of it
+ * Takes an object and removes the given key(s) from it and returns a copy of it
  *
  * @name owithout
  * @param o The object to remove keys from
