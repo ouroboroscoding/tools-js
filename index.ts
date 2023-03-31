@@ -62,6 +62,131 @@ export function afindo(a: Record<string, any>[], k: string | number, v: any): Re
 }
 
 /**
+ * Array Find Delete
+ *
+ * Finds a specific object in an array based on key name and value and then
+ * deletes the object from the array
+ *
+ * If returnClone is set to true, a new copy of the passed array is returned if
+ * the record is found and deleted, else the same array passed is returned with
+ * no change
+ *
+ * @name arrayFindDelete
+ * @access public
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @param returnClone If set to true, a clone of `a`, or `a`, is returned
+ * 						in place of true or false
+ * @returns boolean | Array
+ */
+export function arrayFindDelete(a: Record<string, any>[], k: string | number, v: any, returnClone?: boolean): boolean | Record<string, any>[] {
+
+	// First, find the record
+	const i = afindi(a, k, v);
+
+	// If the record isn't found
+	if(i === -1) {
+		return returnClone ? a : false;
+	}
+
+	// If we want to clone it
+	if(returnClone) {
+		const l = clone(a);
+		l.splice(i, 1);
+		return l;
+	}
+
+	// Else, update it in place and return success
+	a.splice(i, 1);
+	return true;
+}
+
+/**
+ * Array Find Merge
+ *
+ * Finds a specific object in an array based on key name and value and then
+ * merges the new data with the existing data
+ *
+ * If returnClone is set to true, a new copy of the passed array is returned if
+ * the record is found and merged, else the same array passed is returned with
+ * no change
+ *
+ * @name arrayFindMerge
+ * @access public
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @param d The data to put on top of the existing data
+ * @param returnClone If set to true, a clone of `a`, or `a`, is returned
+ * 						in place of true or false
+ * @returns boolean | Array
+ */
+export function arrayFindMerge(a: Record<string, any>[], k: string | number, v: any, d: Record<string, any>, returnClone?: boolean): boolean | Record<string, any>[] {
+
+	// First, find the record
+	const i = afindi(a, k, v);
+
+	// If the record isn't found
+	if(i === -1) {
+		return returnClone ? a : false;
+	}
+
+	// If we want to clone it
+	if(returnClone) {
+		const l = clone(a);
+		l[i] = {...l[i], ...d};
+		return l;
+	}
+
+	// Else, update it in place and return success
+	a[i] = {...a[i], ...d};
+	return true;
+}
+
+/**
+ * Array Find Overwrite
+ *
+ * Finds a specific object in an array based on key name and value and then
+ * overwrites the existing data with the new data
+ *
+ * If returnClone is set to true, a new copy of the passed array is returned if
+ * the record is found and merged, else the same array passed is returned with
+ * no change
+ *
+ * @name arrayFindOverwrite
+ * @access public
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @param d The data to put on top of the existing data
+ * @param returnClone If set to true, a clone of `a`, or `a`, is returned
+ * 						in place of true or false
+ * @returns boolean | Array
+ */
+export function arrayFindOverwrite(a: Record<string, any>[], k: string | number, v: any, d: Record<string, any>, returnClone?: boolean): boolean | Record<string, any>[] {
+
+	// First, find the record
+	const i = afindi(a, k, v);
+
+	// If the record isn't found
+	if(i === -1) {
+		return returnClone ? a : false;
+	}
+
+	// If we want to clone it
+	if(returnClone) {
+		const l = clone(a);
+		l[i] = d;
+		return l;
+	}
+
+	// Else, update it in place and return success
+	a[i] = d;
+	return true;
+}
+
+/**
  * Array Shift
  *
  * Shifts an item in an array from one index to another
@@ -910,8 +1035,9 @@ export function ucfirst(text: string): string {
 
 // Default export
 const tools = {
-	afindi, afindo, ashift, bytesHuman, combine, compare, divmod, empty,
-	isDecimal, isInteger, isNumeric, isObject, join, max, merge, min, nicePhone,
-	omap, opop, owithout, parseQuery, random, sortByKey, ucfirst
+	afindi, afindo, arrayFindDelete, arrayFindMerge, arrayFindOverwrite, ashift,
+	bytesHuman, combine, compare, divmod, empty, isDecimal, isInteger, isNumeric,
+	isObject, join, max, merge, min, nicePhone, omap, opop, owithout, parseQuery,
+	random, sortByKey, ucfirst
 };
 export default tools;
