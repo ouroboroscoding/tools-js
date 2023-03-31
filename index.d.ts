@@ -36,6 +36,68 @@ export declare function afindi(a: Record<string, any>[], k: string | number, v: 
  */
 export declare function afindo(a: Record<string, any>[], k: string | number, v: any): Record<string, any> | null;
 /**
+ * Array Find Delete
+ *
+ * Finds a specific object in an array based on key name and value and then
+ * deletes the object from the array
+ *
+ * If returnClone is set to true, a new copy of the passed array is returned if
+ * the record is found and deleted, else the same array passed is returned with
+ * no change
+ *
+ * @name arrayFindDelete
+ * @access public
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @param returnClone If set to true, a clone of `a`, or `a`, is returned
+ * 						in place of true or false
+ * @returns boolean | Array
+ */
+export declare function arrayFindDelete(a: Record<string, any>[], k: string | number, v: any, returnClone?: boolean): boolean | Record<string, any>[];
+/**
+ * Array Find Merge
+ *
+ * Finds a specific object in an array based on key name and value and then
+ * merges the new data with the existing data
+ *
+ * If returnClone is set to true, a new copy of the passed array is returned if
+ * the record is found and merged, else the same array passed is returned with
+ * no change
+ *
+ * @name arrayFindMerge
+ * @access public
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @param d The data to put on top of the existing data
+ * @param returnClone If set to true, a clone of `a`, or `a`, is returned
+ * 						in place of true or false
+ * @returns boolean | Array
+ */
+export declare function arrayFindMerge(a: Record<string, any>[], k: string | number, v: any, d: Record<string, any>, returnClone?: boolean): boolean | Record<string, any>[];
+/**
+ * Array Find Overwrite
+ *
+ * Finds a specific object in an array based on key name and value and then
+ * overwrites the existing data with the new data
+ *
+ * If returnClone is set to true, a new copy of the passed array is returned if
+ * the record is found and merged, else the same array passed is returned with
+ * no change
+ *
+ * @name arrayFindOverwrite
+ * @access public
+ * @param a	The value to look through
+ * @param k The name of the key to check
+ * @param v The value to check against
+ * @param d The data to put on top of the existing data
+ * @param returnClone If set to true, a clone of `a`, or `a`, is returned
+ * 						in place of true or false
+ * @returns boolean | Array
+ */
+export declare function arrayFindOverwrite(a: Record<string, any>[], k: string | number, v: any, d: Record<string, any>, returnClone?: boolean): boolean | Record<string, any>[];
+/**
  * Array Shift
  *
  * Shifts an item in an array from one index to another
@@ -320,6 +382,9 @@ export declare function ucfirst(text: string): string;
 declare const tools: {
     afindi: typeof afindi;
     afindo: typeof afindo;
+    arrayFindDelete: typeof arrayFindDelete;
+    arrayFindMerge: typeof arrayFindMerge;
+    arrayFindOverwrite: typeof arrayFindOverwrite;
     ashift: typeof ashift;
     bytesHuman: typeof bytesHuman;
     combine: typeof combine;
