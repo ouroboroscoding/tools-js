@@ -18,9 +18,9 @@ import { afindi } from  '@ouroboros/tools';
 
 let  i;
 const  a = [
-    {iso:  'CA', name:  'Canada'},
-    {iso:  'MX', name:  'Mexico'},
-    {iso:  'US', name:  'United States'}
+    {iso: 'CA', name: 'Canada'},
+    {iso: 'MX', name: 'Mexico'},
+    {iso: 'US', name: 'United States'}
 ];
 
 // i = 1
@@ -39,19 +39,117 @@ import { afindo } from '@ouroboros/tools';
 
 let  o;
 const  a = [
-    {iso:  'CA', name:  'Canada'},
-    {iso:  'MX', name:  'Mexico'},
-    {iso:  'US', name:  'United States'}
+    {iso: 'CA', name: 'Canada'},
+    {iso: 'MX', name: 'Mexico'},
+    {iso: 'US', name: 'United States'}
 ];
 
 // o = {iso: 'MX', name: 'Mexico'}
 o = afindo(a, 'iso', 'MX');
 
-// o = {iso:  'CA', name:  'Canada'}
+// o = {iso: 'CA', name: 'Canada'}
 o = afindo(a, 'name', 'Canada');
 
 // o = null
 o = afindo(a, 'iso', 'GB');
+```
+### arrayFindDelete
+Used to delete an object in an array of objects based on key and value.
+
+Passing the optional returnClone argument as true will return a new
+copy of the array instead of updating it in place.
+```javascript
+import { arrayFindDelete } from '@ouroboros/tools';
+
+const a = [
+    {iso: 'CA', name: 'Canada'},
+    {iso: 'MX', name: 'Mexico'},
+    {iso: 'US', name: 'United States'}
+];
+
+// returns true
+// a = [
+//	{iso: 'CA', name: 'Canada'},
+//	{iso: 'US', name: 'United States'}
+// ]
+arrayFindDelete(a, 'iso', 'MX');
+
+// returns false
+arrayFindDelete(a, 'iso', 'GB');
+
+// returns new array [
+//	{iso: 'CA', name: 'Canada'},
+// ]
+arrayFindDelete(a, 'iso', 'US', true);
+```
+### arrayFindMerge
+Used to find an object in an array of objects based on key and value, then
+merges the new passed data with the existing object found.
+
+Passing the optional returnClone argument as true will return a new
+copy of the array instead of updating it in place.
+```javascript
+import { arrayFindMerge } from '@ouroboros/tools';
+
+const a = [
+    {iso: 'CA', name: 'Canada'},
+    {iso: 'MX', name: 'Mexico'},
+    {iso: 'US', name: 'United States'}
+];
+
+// returns true
+// a = [
+//	{iso: 'CA', name: 'Canada'},
+//	{iso: 'MX', name: 'Mexico'},
+//	{iso: 'US', name: 'United States of America'}
+// ]
+arrayFindMerge(a, 'iso', 'US', { name: 'United States of America' });
+
+// returns false
+arrayFindMerge(a, 'iso', 'GB', { name: 'Great Britain' });
+
+// returns new array [
+//	{iso: 'CA', name: 'Kanata'},
+//	{iso: 'MX', name: 'Mexico'},
+//	{iso: 'US', name: 'United States of America'}
+// ]
+arrayFindMerge(a, 'iso', 'CA', { name: 'Kanata' }, true);
+```
+### arrayFindOverwrite
+Used to find an object in an array of objects based on key and value, then
+overwrites it with the new passed data.
+
+Passing the optional returnClone argument as true will return a new
+copy of the array instead of updating it in place.
+```javascript
+import { arrayFindOverwrite } from '@ouroboros/tools';
+
+const a = [
+    {iso: 'CA', name: 'Canada'},
+    {iso: 'MX', name: 'Mexico'},
+    {iso: 'US', name: 'United States'}
+];
+
+// returns true
+// a = [
+//	{iso: 'CA', name: 'Canada'},
+//	{iso: 'MX', name: 'Mexico'},
+//	{iso: 'GB', name: 'Great Britain'}
+// ]
+arrayFindOverwrite(a, 'iso', 'US', {iso: 'GB', name: 'Great Britain'});
+
+// returns false
+arrayFindOverwrite(a, 'iso', 'US', {iso: 'GB', name: 'Great Britain'});
+
+// returns new array [
+//	{name: 'France'},
+//	{iso: 'MX', name: 'Mexico'},
+//	{iso: 'GB', name: 'Great Britain'}
+// ]
+arrayFindOverwrite(a, 'iso', 'CA', {name: 'France'}, true);
+
+// returns `a` untouched
+arrayFindOverwrite(a, 'iso', 'CA', {name: 'France'}, true);
 ```
 ### ashift
 Shifts an item in an array from one index to another.
