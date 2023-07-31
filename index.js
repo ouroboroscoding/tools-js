@@ -749,6 +749,59 @@ export function parseQuery(query) {
     // Return the name/value pairs found
     return oRet;
 }
+/**
+ * Path To Tree
+ *
+ * Takes an array of arrays of paths and values, and converts it into a tree
+ *
+ * [ ['my.first': 'chris'], ['my.last', 'nasr'],
+ *   ['your.first': 'bob'], ['your.last', 'smith'] ]
+ *
+ * becomes
+ *
+ * { my: { first: 'chris', 'last': 'nasr' },
+ *   your: { first: 'bob', 'last': 'smith' } }
+ *
+ * @name pathToTree
+ * @access public
+ * @param paths The array of paths and values
+ * @returns object
+ */
+export function pathToTree(paths) {
+    // Init the return
+    const oRet = {};
+    // Go through each error
+    for (const err of paths) {
+        // If the error field has a period
+        if (err[0].includes('.')) {
+            // Split it
+            const lField = err[0].split(/\.(.*)/);
+            // If we don't have the field already
+            if (!oRet[lField[0]]) {
+                oRet[lField[0]] = [];
+            }
+            // Add the rest
+            oRet[lField[0]].push([lField[1], err[1]]);
+        }
+        // Else it's a flat field
+        else {
+            if (err[1] === 'is not a string') {
+                err[1] = 'missing';
+            }
+            oRet[err[0]] = err[1];
+        }
+    }
+    // Go through all the errors we found
+    for (const k of Object.keys(oRet)) {
+        // If we find an array
+        if (Array.isArray(oRet[k])) {
+            // Recurse
+            oRet[k] = pathToTree(oRet[k]);
+        }
+    }
+    // Return the Tree
+    return oRet;
+}
 // The sets available for the random function
 const _oRandomSets = {
     "0x": "0123456789abcdef",
@@ -888,6 +941,6 @@ const tools = {
     afindi, afindo, arrayFindDelete, arrayFindMerge, arrayFindOverwrite, ashift,
     bytesHuman, combine, compare, divmod, empty, isDecimal, isInteger, isNumeric,
     isObject, join, max, merge, min, nicePhone, omap, opop, owithout, parseQuery,
-    random, sortByKey, ucfirst
+    pathToTree, random, sortByKey, ucfirst
 };
 export default tools;
