@@ -322,6 +322,25 @@ export declare function owithout(o: Record<string, any>, keys: string | string[]
  */
 export declare function parseQuery(query: string): Record<string, any>;
 /**
+ * Path To Tree
+ *
+ * Takes an array of arrays of paths and values, and converts it into a tree
+ *
+ * [ ['my.first': 'chris'], ['my.last', 'nasr'],
+ *   ['your.first': 'bob'], ['your.last', 'smith'] ]
+ *
+ * becomes
+ *
+ * { my: { first: 'chris', 'last': 'nasr' },
+ *   your: { first: 'bob', 'last': 'smith' } }
+ *
+ * @name pathToTree
+ * @access public
+ * @param paths The array of paths and values
+ * @returns object
+ */
+export declare function pathToTree(paths: string[][]): Record<string, any>;
+/**
  * Random
  *
  * Generates a random string. By default this function will generate an 8
@@ -404,6 +423,7 @@ declare const tools: {
     opop: typeof opop;
     owithout: typeof owithout;
     parseQuery: typeof parseQuery;
+    pathToTree: typeof pathToTree;
     random: typeof random;
     sortByKey: typeof sortByKey;
     ucfirst: typeof ucfirst;
