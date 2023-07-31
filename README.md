@@ -419,6 +419,21 @@ parseQuery('numbers[0]=one&numbers[1]=two&numbers[2]=three');
 parseQuery('n[one]=1&n[two]=2');
 ```
 
+### pathToTree
+Turns a array containing arrays of paths and values, and converts them to a tree
+```javascript
+import { pathToTree } from '@ouroboros/tools';
+
+// { address: { line_one: 'missing',
+//              postal_code: 'invalid' },
+//   title: 'missing' }
+pathToTree([['address.line_one', 'missing'],
+            ['address.postal_code', 'invalid'],
+            ['title', 'missing']
+]);
+```
+
+
 ### sortByKey
 Returns a callback function that will compare two objects by the key name. Useful for sorting arrays of objects using sort
 ```javascript
