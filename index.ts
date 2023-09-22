@@ -13,7 +13,7 @@ import clone from '@ouroboros/clone';
 
 // Regex
 const _reNumeric: RegExp = /^\d+$/;
-const _rePhone: RegExp = /^1?(\d{3})(\d{3})(\d{4})$/
+const _rePhone: RegExp = /^\+?1?(\d{3})(\d{3})(\d{4})$/
 const _reQueryPart: RegExp = /([^=&]+)=?([^&]*)/g
 const _reQueryName: RegExp = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/
 
