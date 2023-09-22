@@ -11,7 +11,7 @@
 import clone from '@ouroboros/clone';
 // Regex
 const _reNumeric = /^\d+$/;
-const _rePhone = /^1?(\d{3})(\d{3})(\d{4})$/;
+const _rePhone = /^\+?1?(\d{3})(\d{3})(\d{4})$/;
 const _reQueryPart = /([^=&]+)=?([^&]*)/g;
 const _reQueryName = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/;
 /**
