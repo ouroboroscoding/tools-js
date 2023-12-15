@@ -164,7 +164,8 @@ export declare function divmod(x: number, y: number): [number, number];
 /**
  * Empty
  *
- * Returns true if the value type is empty
+ * Returns true if the value type is empty. Works similar to how python tests
+ * for False in objects and arrays, including strings.
  *
  * @name empty
  * @access public
@@ -274,6 +275,17 @@ export declare function min(a: string[] | number[]): string | number | null;
  * @returns the phone number
  */
 export declare function nicePhone(val: string): string;
+/**
+ * Normalize
+ *
+ * Replaces all special alpha characters with their ascii equivalent
+ *
+ * @name normalize
+ * @access public
+ * @param text The text to convert
+ * @returns a new string
+ */
+export declare function normalize(text: string): string;
 /**
  * Object Map
  *
@@ -419,6 +431,7 @@ declare const tools: {
     merge: typeof merge;
     min: typeof min;
     nicePhone: typeof nicePhone;
+    normalize: typeof normalize;
     omap: typeof omap;
     opop: typeof opop;
     owithout: typeof owithout;

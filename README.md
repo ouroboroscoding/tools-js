@@ -220,7 +220,7 @@ l = divmod(100, 9);
 l = divmod(123, 5)
 ```
 ### empty
-Returns true if the value type is empty.
+Returns true if the value is "empty" for its type. Similar to how Python checks for False in dicts, lists, and strs.
 ```javascript
 import { empty } from '@ouroboros/tools';
 
@@ -357,6 +357,17 @@ nicePhone('15551234444');
 // +1 (800) 555-1234
 nicePhone('8005551234');
 ```
+### normalize
+Returns, as well as possible, a normalized string converted from another string containing characters with special accents. It does this by finding special characters and converting them into their simpler, single character, versions. This is useful for things like automaticlaly generating urls, or for generating from unicode into ascii.
+```javascript
+import { normalize } from '@ouroboros/tools';
+
+// 'Hello, World!'
+normalize('Ȟěƚľỡ, Ẉợɽḷᶁ!');
+
+// 'ffiDAEij'
+normalize('ﬃǲǼĳ');
+```
 ### omap
 Works like map for arrays, but iterates over an object returning the value, the key, and the index, in that order.
 ```javascript
@@ -433,25 +444,6 @@ pathToTree([['address.line_one', 'missing'],
 ]);
 ```
 
-
-### sortByKey
-Returns a callback function that will compare two objects by the key name. Useful for sorting arrays of objects using sort
-```javascript
-import { sortByKey } from '@ouroboros/tools';
-
-let people = [
-    {first: 'Chris', last: 'Nasr'},
-    {first: 'Brendan', last: 'Eich'},
-    {first: 'Guido', last: 'van Rossum'}
-];
-
-// people = [
-//   { first: 'Brendan', last: 'Eich' },
-//   { first: 'Chris', last: 'Nasr' },
-//   { first: 'Guido', last: 'van Rossum' }
-// ]
-people.sort(sortByKey('first'));
-```
 ### random
 Generates random strings
 ```javascript
@@ -501,6 +493,25 @@ random(8, ['!', '0x'])
 // Use special characters, and hexedecimal characters, no duplicates
 // '*.c#ab46'
 random(8, ['!', '0x'], false)
+```
+
+### sortByKey
+Returns a callback function that will compare two objects by the key name. Useful for sorting arrays of objects using sort
+```javascript
+import { sortByKey } from '@ouroboros/tools';
+
+let people = [
+    {first: 'Chris', last: 'Nasr'},
+    {first: 'Brendan', last: 'Eich'},
+    {first: 'Guido', last: 'van Rossum'}
+];
+
+// people = [
+//   { first: 'Brendan', last: 'Eich' },
+//   { first: 'Chris', last: 'Nasr' },
+//   { first: 'Guido', last: 'van Rossum' }
+// ]
+people.sort(sortByKey('first'));
 ```
 
 ### ucfirst
