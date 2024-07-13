@@ -287,6 +287,20 @@ export declare function nicePhone(val: string): string;
  */
 export declare function normalize(text: string): string;
 /**
+ * Object Array to Object
+ *
+ * Generates a new Object using the values contained in each Object of the `a`
+ * Array
+ *
+ * Example: [ { a: }]
+ *
+ * @param a The Array of Objects to step through
+ * @param keyKey The key of `a` that will be the key in the return
+ * @param valueKey The key of `a` that will be the value in the return
+ * @returns A new object generated from the values in `a` using the keys
+ */
+export declare function objectArrayToObject(a: Record<string, any>[], keyKey: string, valueKey: string): Record<string, string>;
+/**
  * Object Map
  *
  * Works like map for arrays, but iterates over an object returning the value,
