@@ -368,6 +368,26 @@ normalize('Ȟěƚľỡ, Ẉợɽḷᶁ!');
 // 'ffiDAEij'
 normalize('ﬃǲǼĳ');
 ```
+### objectArrayToObject
+Turns an Array of Objects with set key names into an object built of two spefici keys.
+```javascript
+import { objectArrayToObject } from '@ouroboros/tools';
+
+const a = [
+    { a: 'first_a', b: 'first_b', c: 'first_c' },
+    { a: 'second_a', b: 'second_b', c: 'second_c' },
+    { a: 'third_a', b: 'third_b', c: 'third_c' }
+];
+
+// {first_a: 'first_b', second_a: 'second_b', third_a: 'third_b'}
+objectArrayToObject(a, 'a', 'b');
+
+// {first_a: 'first_c', second_a: 'second_c', third_a: 'third_c'}
+objectArrayToObject(a, 'a', 'c');
+
+// {first_c: 'first_b', second_c: 'second_b', third_c: 'third_b'}
+objectArrayToObject(a, 'c', 'b');
+```
 ### omap
 Works like map for arrays, but iterates over an object returning the value, the key, and the index, in that order.
 ```javascript
@@ -386,7 +406,7 @@ omap(o, (v, k, i) => i);
 
 // ['one:uno', 'two:dos', 'three:tres']
 omap(o, (v, k) => {
-	return k + ':' + v;
+    return k + ':' + v;
 });
 ```
 ### opop
