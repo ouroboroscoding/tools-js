@@ -148,6 +148,18 @@ export declare function combine(a: Record<string, any>, b: Record<string, any>):
  */
 export declare function compare(a: any, b: any): boolean;
 /**
+ * Difference
+ *
+ * Returns the changes from the original value, x, to the new value, y.
+ *
+ * @name difference
+ * @access public
+ * @param x The original value
+ * @param y The new value
+ * @returns the changes between the two
+ */
+export declare function difference(x: any, y: any): any;
+/**
  * Divmod
  *
  * Take two (non complex) numbers as arguments and return a pair of numbers
@@ -434,6 +446,7 @@ declare const tools: {
     bytesHuman: typeof bytesHuman;
     combine: typeof combine;
     compare: typeof compare;
+    difference: typeof difference;
     divmod: typeof divmod;
     empty: typeof empty;
     isDecimal: typeof isDecimal;
@@ -446,6 +459,7 @@ declare const tools: {
     min: typeof min;
     nicePhone: typeof nicePhone;
     normalize: typeof normalize;
+    objectArrayToObject: typeof objectArrayToObject;
     omap: typeof omap;
     opop: typeof opop;
     owithout: typeof owithout;
