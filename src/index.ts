@@ -321,6 +321,74 @@ export function compare(a: any, b: any): boolean {
 }
 
 /**
+ * Difference
+ *
+ * Returns the changes from the original value, x, to the new value, y.
+ *
+ * @name difference
+ * @access public
+ * @param x The original value
+ * @param y The new value
+ * @returns the changes between the two
+ */
+export function difference(x: any, y: any): any {
+
+	// If we got two objects
+	if(isObject(x) && isObject(y)) {
+
+		// Init the return
+		const a: Record<string, any> = {};
+
+		// Init the list of keys in y
+		const lKeys = Object.keys(y);
+
+		// Step through each key in x
+		for(const k of Object.keys(x)) {
+
+			// If the key exists in y
+			if(k in y) {
+
+				// Delete it from the list of y keys
+				lKeys.splice(lKeys.indexOf(k), 1);
+
+				// Compare the two
+				const r = difference(x[k], y[k]);
+
+				// If we have a difference
+				if(r) {
+					a[k] = y[k]
+				}
+			}
+
+			// Else, if it's not in y
+			else {
+				a[k] = undefined;
+			}
+		}
+
+		// If we have any remaining y keys
+		for(const k of lKeys) {
+			a[k] = y[k];
+		}
+
+		// If we got no differences
+		if(empty(a)) {
+			return null;
+		}
+
+		// Return the differences
+		return a;
+	}
+
+	// Else, return based on compare
+	else {
+
+		// Return based on comparison
+		return compare(x, y) ? null : y;
+	}
+}
+
+/**
  * Divmod
  *
  * Take two (non complex) numbers as arguments and return a pair of numbers
@@ -1377,8 +1445,9 @@ export function ucfirst(text: string): string {
 // Default export
 const tools = {
 	afindi, afindo, arrayFindDelete, arrayFindMerge, arrayFindOverwrite, ashift,
-	bytesHuman, combine, compare, divmod, empty, isDecimal, isInteger, isNumeric,
-	isObject, join, max, merge, min, nicePhone, normalize, omap, opop, owithout,
-	parseQuery, pathToTree, random, sortByKey, ucfirst
+	bytesHuman, combine, compare, difference, divmod, empty, isDecimal,
+	isInteger, isNumeric, isObject, join, max, merge, min, nicePhone, normalize,
+	objectArrayToObject, omap, opop, owithout, parseQuery, pathToTree, random,
+	sortByKey, ucfirst
 };
 export default tools;
