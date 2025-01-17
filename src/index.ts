@@ -355,7 +355,7 @@ export function difference(x: any, y: any): any {
 				const r = difference(x[k], y[k]);
 
 				// If we have a difference
-				if(r) {
+				if(r !== undefined) {
 					a[k] = y[k]
 				}
 			}
@@ -373,7 +373,7 @@ export function difference(x: any, y: any): any {
 
 		// If we got no differences
 		if(empty(a)) {
-			return null;
+			return undefined;
 		}
 
 		// Return the differences
@@ -384,7 +384,7 @@ export function difference(x: any, y: any): any {
 	else {
 
 		// Return based on comparison
-		return compare(x, y) ? null : y;
+		return compare(x, y) ? undefined : y;
 	}
 }
 
