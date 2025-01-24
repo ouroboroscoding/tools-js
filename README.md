@@ -203,7 +203,19 @@ compare(
 // false
 compare(
     {one: [1, 1, 1]},
-    {one: [1, 1}
+    {one: [1, 1]}
+);
+```
+
+### difference
+Returns the changes from the original value, x, to the new value, y.
+```javascript
+import { difference } from '@ouroboros/tools';
+
+// { two: 'deux', three: 3 }
+difference(
+  { one, 1, two: 2 },
+  { one, 1, two: 'deux', three: 3 }
 );
 ```
 
@@ -544,4 +556,22 @@ ucfirst('hello, world!');
 
 // Hello, World!
 ucfirst('HELLO, WORLD!');
+```
+
+### uuid_add_dashes
+Takes a UUID string in which the dash character has been stripped out, and adds the dashes back in the proper location.
+```javascript
+import { uuid_add_dashes } from '@ouroboros/tools';
+
+// d23de65e-bbdd-11ef-8f05-8f48b9c7b948
+uuid_add_dashes('d23de65ebbdd11ef8f058f48b9c7b948');
+```
+
+### uuid_strip_dashes
+Takes a UUID string and strips out the dash characters to make it shorter / smaller.
+```javascript
+import { uuid_strip_dashes } from '@ouroboros/tools';
+
+// d23de65ebbdd11ef8f058f48b9c7b948
+uuid_strip_dashes('d23de65e-bbdd-11ef-8f05-8f48b9c7b948');
 ```
