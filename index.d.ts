@@ -436,6 +436,28 @@ export declare function sortByKey(key: string): (a: Record<string, any>, b: Reco
  * @returns the converted text
  */
 export declare function ucfirst(text: string): string;
+/**
+ * UUID Add Dashes
+ *
+ * Adds dashes back to a UUID that had them removed
+ *
+ * @name uuid_add_dashes
+ * @access public
+ * @param text The text to add dashes to
+ * @returns a proper UUID string representation
+ */
+export declare function uuid_add_dashes(text: string): string;
+/**
+ * UUID Strip Dashes
+ *
+ * Removes the dashes from a UUID string representation
+ *
+ * @name uuid_strip_dashes
+ * @access public
+ * @param uuid The UUID to strip dashes from
+ * @returns a UUID string without dashes
+ */
+export declare function uuid_strip_dashes(uuid: string): string;
 declare const tools: {
     afindi: typeof afindi;
     afindo: typeof afindo;
@@ -468,5 +490,7 @@ declare const tools: {
     random: typeof random;
     sortByKey: typeof sortByKey;
     ucfirst: typeof ucfirst;
+    uuid_add_dashes: typeof uuid_add_dashes;
+    uuid_strip_dashes: typeof uuid_strip_dashes;
 };
 export default tools;

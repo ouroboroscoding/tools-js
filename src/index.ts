@@ -1442,12 +1442,40 @@ export function ucfirst(text: string): string {
 	).join(' ');
 }
 
+/**
+ * UUID Add Dashes
+ *
+ * Adds dashes back to a UUID that had them removed
+ *
+ * @name uuid_add_dashes
+ * @access public
+ * @param text The text to add dashes to
+ * @returns a proper UUID string representation
+ */
+export function uuid_add_dashes(text: string): string {
+	return `${text.substring(0,8)}-${text.substring(8,12)}-${text.substring(12,16)}-${text.substring(16,20)}-${text.substring(20,32)}`
+}
+
+/**
+ * UUID Strip Dashes
+ *
+ * Removes the dashes from a UUID string representation
+ *
+ * @name uuid_strip_dashes
+ * @access public
+ * @param uuid The UUID to strip dashes from
+ * @returns a UUID string without dashes
+ */
+export function uuid_strip_dashes(uuid: string): string {
+	return `${uuid.substring(0,8)}${uuid.substring(9,13)}${uuid.substring(14,18)}${uuid.substring(19,23)}${uuid.substring(24,36)}`
+}
+
 // Default export
 const tools = {
 	afindi, afindo, arrayFindDelete, arrayFindMerge, arrayFindOverwrite, ashift,
 	bytesHuman, combine, compare, difference, divmod, empty, isDecimal,
 	isInteger, isNumeric, isObject, join, max, merge, min, nicePhone, normalize,
 	objectArrayToObject, omap, opop, owithout, parseQuery, pathToTree, random,
-	sortByKey, ucfirst
+	sortByKey, ucfirst, uuid_add_dashes, uuid_strip_dashes
 };
 export default tools;
