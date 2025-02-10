@@ -1006,7 +1006,7 @@ export function objectArrayToObject(a: Record<string, any>[], keyKey: string, va
  * @param callback The function to call each iteration
  * @returns a new array of each processed object
  */
-export function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => {}): any[] {
+export function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => any): any[] {
 	const ret: any[] = [];
 	let index: number = 0;
 	for(const k of Object.keys(o)) {
@@ -1418,7 +1418,7 @@ export function random(length: number, sets: string | string[] = ['aZ'], duplica
  * @returns the function
  */
 export function sortByKey(key: string):
-	(a:Record<string, any>, b:Record<string, any>) => {} {
+	(a:Record<string, any>, b:Record<string, any>) => 0 | 1 | -1 {
 	return (a, b) => {
 		if(a[key] === b[key]) return 0;
 		else return (a[key] < b[key]) ? -1 : 1;

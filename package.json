@@ -1,6 +1,6 @@
 {
 	"name": "@ouroboros/tools",
-	"version": "0.6.4",
+	"version": "0.6.5",
 	"description": "A set of tools for common javascript problems",
 	"main": "index.js",
 	"types": "index.d.ts",
