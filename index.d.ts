@@ -324,7 +324,7 @@ export declare function objectArrayToObject(a: Record<string, any>[], keyKey: st
  * @param callback The function to call each iteration
  * @returns a new array of each processed object
  */
-export declare function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => {}): any[];
+export declare function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => any): any[];
 /**
  * Object Pop
  *
@@ -424,7 +424,7 @@ export declare function random(length: number, sets?: string | string[], duplica
  * @param key The name of the key to sort by
  * @returns the function
  */
-export declare function sortByKey(key: string): (a: Record<string, any>, b: Record<string, any>) => {};
+export declare function sortByKey(key: string): (a: Record<string, any>, b: Record<string, any>) => 0 | 1 | -1;
 /**
  * UCFirst
  *
