@@ -9,9 +9,46 @@ npm
 ```bash
 npm install @ouroboros/tools
 ```
+
 ## Functions
 
-### afindi
+- [afindi](#afindi)
+- [afindo](#afindo)
+- [arrayFindDelete](#arrayfinddelete)
+- [arrayFindMerge](#arraydindmerge)
+- [arrayFindOverwrite](#arrayfindoverwrite)
+- [ashift](#ashift)
+- [bytesHuman](#byteshuman)
+- [combine](#combine)
+- [compare](#compare)
+- [difference](#difference)
+- [divmod](#divmod)
+- [empty](#empty)
+- [isDecimal](#isdecimal)
+- [isInteger](#isinteger)
+- [isNumeric](#isnumeric)
+- [isObject](#isobject)
+- [join](#join)
+- [latitudeToDegrees](#latitudetodegrees)
+- [longitudeToDegrees](#longitudetodegrees)
+- [max](#max)
+- [merge](#merge)
+- [min](#min)
+- [nicePhone](#nicephone)
+- [normalize](#normalize)
+- [objectArrayToObject](#objectarraytoobject)
+- [omap](#omap)
+- [opop](#opop)
+- [owithout](#owithout)
+- [parseQuery](#parsequery)
+- [pathToTree](#pathtotree)
+- [random](#random)
+- [sortByKey](#sortbykey)
+- [ucfirst](#ucfirst)
+- [uuidAddDashes](#uuidadddashes)
+- [uuidStripDashes](#uuidstripdashes)
+
+## afindi
 Use to find the index of an object in an array based on a key and value.
 ```javascript
 import { afindi } from  '@ouroboros/tools';
@@ -32,7 +69,7 @@ i = afindi(a, 'name', 'Canada');
 // i = -1
 i = afindi(a, 'iso', 'GB');
 ```
-### afindo
+## afindo
 Used to find an object in an array of objects based on key and value.
 ```javascript
 import { afindo } from '@ouroboros/tools';
@@ -53,7 +90,7 @@ o = afindo(a, 'name', 'Canada');
 // o = null
 o = afindo(a, 'iso', 'GB');
 ```
-### arrayFindDelete
+## arrayFindDelete
 Used to delete an object in an array of objects based on key and value.
 
 Passing the optional returnClone argument as true will return a new
@@ -82,7 +119,7 @@ arrayFindDelete(a, 'iso', 'GB');
 // ]
 arrayFindDelete(a, 'iso', 'US', true);
 ```
-### arrayFindMerge
+## arrayFindMerge
 Used to find an object in an array of objects based on key and value, then
 merges the new passed data with the existing object found.
 
@@ -115,7 +152,7 @@ arrayFindMerge(a, 'iso', 'GB', { name: 'Great Britain' });
 // ]
 arrayFindMerge(a, 'iso', 'CA', { name: 'Kanata' }, true);
 ```
-### arrayFindOverwrite
+## arrayFindOverwrite
 Used to find an object in an array of objects based on key and value, then
 overwrites it with the new passed data.
 
@@ -151,7 +188,7 @@ arrayFindOverwrite(a, 'iso', 'CA', {name: 'France'}, true);
 // returns `a` untouched
 arrayFindOverwrite(a, 'iso', 'CA', {name: 'France'}, true);
 ```
-### ashift
+## ashift
 Shifts an item in an array from one index to another.
 ```javascript
 import { ashift } from '@ouroboros/tools';
@@ -161,7 +198,7 @@ const a = ['!', 'hello', 'world'];
 // a = ['hello', 'world', '!']
 ashift(a, 0, 2);
 ```
-### bytesHuman
+## bytesHuman
 Converts a number of bytes into a human readable string.
 ```javascript
 import { bytesHuman } from '@ouroboros/tools';
@@ -171,7 +208,7 @@ const bytes = 1073741824; // 1024 * 1024 * 1024
 // s = '1.0GiB'
 const s = bytesHuman(bytes);
 ```
-### combine
+## combine
 Combines two objects into a new one and returns it. If there are any duplicate keys, those in "a" are overwritten by those in "b".
 ```javascript
 import { combine } from '@ouroboros/tools';
@@ -183,7 +220,7 @@ const b = {two: 2, three: 3}
 const c = combine(a, b);
 ```
 
-### compare
+## compare
 Compares two values of any type to see if they contain the same data or not.
 ```javascript
 import { compare } from '@ouroboros/tools';
@@ -207,7 +244,7 @@ compare(
 );
 ```
 
-### difference
+## difference
 Returns the changes from the original value, x, to the new value, y.
 ```javascript
 import { difference } from '@ouroboros/tools';
@@ -219,7 +256,7 @@ difference(
 );
 ```
 
-### divmod
+## divmod
 Take two (non complex) numbers as arguments and return a pair of numbers consisting of their quotient and remainder when using integer division.
 ```javascript
 import { divmod } from '@ouroboros/tools';
@@ -231,7 +268,7 @@ l = divmod(100, 9);
 // l = [24, 3]
 l = divmod(123, 5)
 ```
-### empty
+## empty
 Returns true if the value is "empty" for its type. Similar to how Python checks for False in dicts, lists, and strs.
 ```javascript
 import { empty } from '@ouroboros/tools';
@@ -247,7 +284,7 @@ empty(a);
 empty(' ');
 empty(['']);
 ```
-### isDecimal
+## isDecimal
 Returns true if the variable is a number.
 ```javascript
 import { isDecimal } from '@ouroboros/tools';
@@ -265,7 +302,7 @@ isDecimal('1');
 isDecimal([]);
 ```
 
-### isInteger
+## isInteger
 Returns true if the variable is a true integer.
 ```javascript
 import { isInteger } from '@ouroboros/tools';
@@ -280,7 +317,7 @@ isInteger('1');
 isInteger(1.1);
 isInteger([]);
 ```
-### isNumeric
+## isNumeric
 Returns true if a string is made up only of digits.
 ```javascript
 import { isNumeric } from '@ouroboros/tools';
@@ -295,7 +332,7 @@ isNumeric(' 1');
 isNumeric('1.');
 isNumeric('1.1');
 ```
-### isObject
+## isObject
 Returns true if the variable is a true object.
 ```javascript
 import { isObject } from '@ouroboros/tools';
@@ -310,7 +347,7 @@ isObject([]);
 isObject('hello');
 ```
 
-### join
+## join
 Creates a single string from a list of members that may or may not exist in the passed object.
 ```javascript
 import { join } from '@ouroboros/tools';
@@ -324,7 +361,32 @@ join(name1, ['title', 'first', 'middle', 'last']);
 // FrankGarySmith
 join(name2, ['title', 'first', 'middle', 'last'], '');
 ```
-### max
+
+## latitudeToDegrees
+Returns the string representation of a latitude from a decimal/float value
+```javascript
+import { latitudeToDegrees } from '@ouroboros/tools';
+
+// N45° 30' 32.00"
+latitudeToDegrees(45.508888);
+
+// Nord45° 30' 32.00"
+latitudeToDegrees(45.508888, [ 'Nord', 'Sud' ]);
+```
+
+## longitudeToDegrees
+Returns the string representation of a longitude from a decimal/float value
+```javascript
+import { longitudeToDegrees } from '@ouroboros/tools';
+
+// W45° 30' 32.00"
+longitudeToDegrees(-73.561668);
+
+// O45° 30' 32.00"
+longitudeToDegrees(-73.561668, [ 'E', 'O' ]);
+```
+
+## max
 Returns the maximum (largest) value in an array.
 ```javascript
 import { max } from '@ouroboros/tools';
@@ -336,7 +398,7 @@ max([2, 3, 1]);
 max(['Lion', 'Alligator', 'Zebra']);
 ```
 
-### merge
+## merge
 Merges the keys from the second object into the first.
 ```javascript
 import { merge } from '@ouroboros/tools';
@@ -347,7 +409,7 @@ let b = {three: 3};
 // a = {one: 1, two: 2, three: 3}
 merge(a, b);
 ```
-### min
+## min
 Returns the minimum (smallest) value in an array
 ```javascript
 import { min } from '@ouroboros/tools';
@@ -358,7 +420,7 @@ max([2, 3, 1]);
 // Alligator
 max(['Lion', 'Alligator', 'Zebra']);
 ```
-### nicePhone
+## nicePhone
 Returns a more easily readable phone number in the NA format.
 ```javascript
 import { nicePhone } from '@ouroboros/tools';
@@ -369,7 +431,7 @@ nicePhone('15551234444');
 // +1 (800) 555-1234
 nicePhone('8005551234');
 ```
-### normalize
+## normalize
 Returns, as well as possible, a normalized string converted from another string containing characters with special accents. It does this by finding special characters and converting them into their simpler, single character, versions. This is useful for things like automaticlaly generating urls, or for generating from unicode into ascii.
 ```javascript
 import { normalize } from '@ouroboros/tools';
@@ -380,7 +442,7 @@ normalize('Ȟěƚľỡ, Ẉợɽḷᶁ!');
 // 'ffiDAEij'
 normalize('ﬃǲǼĳ');
 ```
-### objectArrayToObject
+## objectArrayToObject
 Turns an Array of Objects with set key names into an object built of two spefici keys.
 ```javascript
 import { objectArrayToObject } from '@ouroboros/tools';
@@ -400,7 +462,7 @@ objectArrayToObject(a, 'a', 'c');
 // {first_c: 'first_b', second_c: 'second_b', third_c: 'third_b'}
 objectArrayToObject(a, 'c', 'b');
 ```
-### omap
+## omap
 Works like map for arrays, but iterates over an object returning the value, the key, and the index, in that order.
 ```javascript
 import { omap } from '@ouroboros/tools';
@@ -418,27 +480,27 @@ omap(o, (v, k, i) => i);
 
 // ['one:uno', 'two:dos', 'three:tres']
 omap(o, (v, k) => {
-    return k + ':' + v;
+    return `${k}:${v}`;
 });
 ```
-### opop
+## opop
 Removes an element from an object by name, then returns it.
 ```javascript
 import { opop } from '@ouroboros/tools';
 
-let o = {one: 1, two: 2, three: 3};
+const o = {one: 1, two: 2, three: 3};
 
 // o = {one: 1, three: 3}
 // i = 2
-let i = opop(o, 'two');
+const i = opop(o, 'two');
 ```
 
-### owithout
+## owithout
 Takes an object and removes the given key(s) from it and returns a copy of it
 ```javascript
 import { owithout } from '@ouroboros/tools';
 
-let o1 = {'one': 1, 'two': 2, 'three': 3}
+const o1 = {'one': 1, 'two': 2, 'three': 3}
 
 // {'one': 1, 'two': 2}
 owithout(o1, 'three');
@@ -447,7 +509,7 @@ owithout(o1, 'three');
 owithout(o1, ['one', 'three']);
 ```
 
-### parseQuery
+## parseQuery
 Turns a query string into an object.
 ```javascript
 import { parseQuery } from '@ouroboros/tools';
@@ -462,7 +524,7 @@ parseQuery('numbers[0]=one&numbers[1]=two&numbers[2]=three');
 parseQuery('n[one]=1&n[two]=2');
 ```
 
-### pathToTree
+## pathToTree
 Turns a array containing arrays of paths and values, and converts them to a tree
 ```javascript
 import { pathToTree } from '@ouroboros/tools';
@@ -476,7 +538,7 @@ pathToTree([['address.line_one', 'missing'],
 ]);
 ```
 
-### random
+## random
 Generates random strings
 ```javascript
 import { random } from '@ouroboros/tools';
@@ -527,7 +589,7 @@ random(8, ['!', '0x'])
 random(8, ['!', '0x'], false)
 ```
 
-### sortByKey
+## sortByKey
 Returns a callback function that will compare two objects by the key name. Useful for sorting arrays of objects using sort
 ```javascript
 import { sortByKey } from '@ouroboros/tools';
@@ -546,7 +608,7 @@ let people = [
 people.sort(sortByKey('first'));
 ```
 
-### ucfirst
+## ucfirst
 Makes the first character of each word in the text upper case.
 ```javascript
 import { ucfirst } from '@ouroboros/tools';
@@ -558,20 +620,20 @@ ucfirst('hello, world!');
 ucfirst('HELLO, WORLD!');
 ```
 
-### uuid_add_dashes
+## uuidAddDashes
 Takes a UUID string in which the dash character has been stripped out, and adds the dashes back in the proper location.
 ```javascript
-import { uuid_add_dashes } from '@ouroboros/tools';
+import { uuidAddDashes } from '@ouroboros/tools';
 
 // d23de65e-bbdd-11ef-8f05-8f48b9c7b948
-uuid_add_dashes('d23de65ebbdd11ef8f058f48b9c7b948');
+uuidAddDashes('d23de65ebbdd11ef8f058f48b9c7b948');
 ```
 
-### uuid_strip_dashes
+## uuidStripDashes
 Takes a UUID string and strips out the dash characters to make it shorter / smaller.
 ```javascript
-import { uuid_strip_dashes } from '@ouroboros/tools';
+import { uuidStripDashes } from '@ouroboros/tools';
 
 // d23de65ebbdd11ef8f058f48b9c7b948
-uuid_strip_dashes('d23de65e-bbdd-11ef-8f05-8f48b9c7b948');
+uuidStripDashes('d23de65e-bbdd-11ef-8f05-8f48b9c7b948');
 ```
