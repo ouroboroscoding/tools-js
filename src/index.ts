@@ -321,6 +321,41 @@ export function compare(a: any, b: any): boolean {
 }
 
 /**
+ * Decimal To Degrees
+ *
+ * Converts a number or decimal string values into a string representing global
+ * degrees
+ *
+ * @name decimalToDeg
+ * @access private
+ * @param decimal The number to convert to degrees
+ * @param directions The representation of positive and negative, in that order
+ */
+function decimalToDeg(decimal: number, directions: string[]) {
+
+	// Get the absolute value
+	const abs = Math.abs(decimal);
+
+	// Get the direction
+	const dir = directions[decimal < 0 ? 1 : 0];
+
+	// Get the exponent
+	const exp = Math.round(abs * 1000000) % 1000000 / 1000000;
+
+	// Get the degrees
+	const deg = Math.floor(abs);
+
+	// Get the minutes
+	const mins = Math.floor(exp * 60);
+
+	// Get the seconds
+	const secs = (exp - mins / 60) * 3600;
+
+	// Return the new string from the parts
+	return `${dir}${deg}° ${mins}' ${secs.toFixed(2)}"`;
+}
+
+/**
  * Difference
  *
  * Returns the changes from the original value, x, to the new value, y.
@@ -565,6 +600,70 @@ export function join(o: Record<string, any>, l: string[], separator: string=' ')
 
 	// Join and return
 	return lFound.join(separator);
+}
+
+/**
+ * Latitude to Degrees
+ *
+ * Converts a number or decimal string values into a string representing global
+ * degrees Pass the optional `directions` list if you need values in another
+ * locale.
+ *
+ * @name latitudeToDegrees
+ * @access public
+ * @param decimal The number to convert to degrees
+ * @param directions Optional representation of North ('N') and South ('S')
+ * @returns the latitude in degrees
+ */
+export function latitudeToDegrees(
+	decimal: number | string,
+	directions: string[] = [ 'N', 'S' ]
+) {
+
+	// If the decimal is a string
+	if(typeof decimal === 'string') {
+		decimal = parseFloat(decimal);
+	}
+
+	// If the number is out of range
+	if(Math.abs(Math.round(decimal)) > 90) {
+		return NaN;
+	}
+
+	// Return the value
+	return decimalToDeg(decimal, directions);
+}
+
+/**
+ * Longitude to Degrees
+ *
+ * Converts a number or decimal string values into a string representing global
+ * degrees. Pass the optional `directions` list if you need values in another
+ * locale.
+ *
+ * @name longitudeToDegrees
+ * @access public
+ * @param decimal The number to convert to degrees
+ * @param directions Optional representation of East ('E') and West ('W')
+ * @returns the longitude in degrees
+ */
+export function longitudeToDegrees(
+	decimal: number | string,
+	directions: string[] = [ 'E', 'W' ]
+) {
+
+	// If the decimal is a string
+	if(typeof decimal === 'string') {
+		decimal = parseFloat(decimal);
+	}
+
+	// If the number is out of range
+	if(Math.abs(decimal) > 180) {
+		return NaN;
+	}
+
+	// Convert and return it
+	return decimalToDeg(decimal, directions);
 }
 
 /**
@@ -1447,12 +1546,12 @@ export function ucfirst(text: string): string {
  *
  * Adds dashes back to a UUID that had them removed
  *
- * @name uuid_add_dashes
+ * @name uuidAddDashes
  * @access public
  * @param text The text to add dashes to
  * @returns a proper UUID string representation
  */
-export function uuid_add_dashes(text: string): string {
+export function uuidAddDashes(text: string): string {
 	return `${text.substring(0,8)}-${text.substring(8,12)}-${text.substring(12,16)}-${text.substring(16,20)}-${text.substring(20,32)}`
 }
 
@@ -1461,12 +1560,12 @@ export function uuid_add_dashes(text: string): string {
  *
  * Removes the dashes from a UUID string representation
  *
- * @name uuid_strip_dashes
+ * @name uuidStripDashes
  * @access public
  * @param uuid The UUID to strip dashes from
  * @returns a UUID string without dashes
  */
-export function uuid_strip_dashes(uuid: string): string {
+export function uuidStripDashes(uuid: string): string {
 	return `${uuid.substring(0,8)}${uuid.substring(9,13)}${uuid.substring(14,18)}${uuid.substring(19,23)}${uuid.substring(24,36)}`
 }
 
@@ -1474,8 +1573,9 @@ export function uuid_strip_dashes(uuid: string): string {
 const tools = {
 	afindi, afindo, arrayFindDelete, arrayFindMerge, arrayFindOverwrite, ashift,
 	bytesHuman, combine, compare, difference, divmod, empty, isDecimal,
-	isInteger, isNumeric, isObject, join, max, merge, min, nicePhone, normalize,
-	objectArrayToObject, omap, opop, owithout, parseQuery, pathToTree, random,
-	sortByKey, ucfirst, uuid_add_dashes, uuid_strip_dashes
+	isInteger, isNumeric, isObject, join, latitudeToDegrees, longitudeToDegrees,
+	max, merge, min, nicePhone, normalize, objectArrayToObject, omap, opop,
+	owithout, parseQuery, pathToTree, random, sortByKey, ucfirst, uuidAddDashes,
+	uuidStripDashes
 };
 export default tools;
