@@ -244,6 +244,34 @@ export declare function isObject(m: any): boolean;
  */
 export declare function join(o: Record<string, any>, l: string[], separator?: string): string;
 /**
+ * Latitude to Degrees
+ *
+ * Converts a number or decimal string values into a string representing global
+ * degrees Pass the optional `directions` list if you need values in another
+ * locale.
+ *
+ * @name latitudeToDegrees
+ * @access public
+ * @param decimal The number to convert to degrees
+ * @param directions Optional representation of North ('N') and South ('S')
+ * @returns the latitude in degrees
+ */
+export declare function latitudeToDegrees(decimal: number | string, directions?: string[]): string | number;
+/**
+ * Longitude to Degrees
+ *
+ * Converts a number or decimal string values into a string representing global
+ * degrees. Pass the optional `directions` list if you need values in another
+ * locale.
+ *
+ * @name longitudeToDegrees
+ * @access public
+ * @param decimal The number to convert to degrees
+ * @param directions Optional representation of East ('E') and West ('W')
+ * @returns the longitude in degrees
+ */
+export declare function longitudeToDegrees(decimal: number | string, directions?: string[]): string | number;
+/**
  * Max
  *
  * Returns the maximum (largest) value in an array
@@ -441,23 +469,23 @@ export declare function ucfirst(text: string): string;
  *
  * Adds dashes back to a UUID that had them removed
  *
- * @name uuid_add_dashes
+ * @name uuidAddDashes
  * @access public
  * @param text The text to add dashes to
  * @returns a proper UUID string representation
  */
-export declare function uuid_add_dashes(text: string): string;
+export declare function uuidAddDashes(text: string): string;
 /**
  * UUID Strip Dashes
  *
  * Removes the dashes from a UUID string representation
  *
- * @name uuid_strip_dashes
+ * @name uuidStripDashes
  * @access public
  * @param uuid The UUID to strip dashes from
  * @returns a UUID string without dashes
  */
-export declare function uuid_strip_dashes(uuid: string): string;
+export declare function uuidStripDashes(uuid: string): string;
 declare const tools: {
     afindi: typeof afindi;
     afindo: typeof afindo;
@@ -476,6 +504,8 @@ declare const tools: {
     isNumeric: typeof isNumeric;
     isObject: typeof isObject;
     join: typeof join;
+    latitudeToDegrees: typeof latitudeToDegrees;
+    longitudeToDegrees: typeof longitudeToDegrees;
     max: typeof max;
     merge: typeof merge;
     min: typeof min;
@@ -490,7 +520,7 @@ declare const tools: {
     random: typeof random;
     sortByKey: typeof sortByKey;
     ucfirst: typeof ucfirst;
-    uuid_add_dashes: typeof uuid_add_dashes;
-    uuid_strip_dashes: typeof uuid_strip_dashes;
+    uuidAddDashes: typeof uuidAddDashes;
+    uuidStripDashes: typeof uuidStripDashes;
 };
 export default tools;
