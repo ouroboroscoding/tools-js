@@ -204,6 +204,25 @@ export function bytesHuman(num) {
     return `${num.toFixed(1)}YiB`;
 }
 /**
+ * classes
+ *
+ * Simplified replacement for the React classSet function
+ *
+ * @name classes
+ * @access public
+ * @param o The object of classes (keys) to bools (values)
+ * @return classes split by spaces
+ */
+export function classes(o) {
+    const l = [];
+    for (const k of Object.keys(o)) {
+        if (o[k]) {
+            l.push(k);
+        }
+    }
+    return l.join(' ');
+}
+/**
  * Combine
  *
  * Combines two objects into a new one and returns it. If there are any
@@ -1320,11 +1339,41 @@ export function uuidStripDashes(uuid) {
 }
 // Default export
 const tools = {
-    afindi, afindo, arrayFindDelete, arrayFindMerge, arrayFindOverwrite, ashift,
-    bytesHuman, combine, compare, difference, divmod, empty, isDecimal,
-    isInteger, isNumeric, isObject, join, latitudeToDegrees, longitudeToDegrees,
-    max, merge, min, nicePhone, normalize, objectArrayToObject, omap, opop,
-    owithout, parseQuery, pathToTree, random, sortByKey, ucfirst, uuidAddDashes,
+    afindi,
+    afindo,
+    arrayFindDelete,
+    arrayFindMerge,
+    arrayFindOverwrite,
+    ashift,
+    bytesHuman,
+    classes,
+    combine,
+    compare,
+    difference,
+    divmod,
+    empty,
+    isDecimal,
+    isInteger,
+    isNumeric,
+    isObject,
+    join,
+    latitudeToDegrees,
+    longitudeToDegrees,
+    max,
+    merge,
+    min,
+    nicePhone,
+    normalize,
+    objectArrayToObject,
+    omap,
+    opop,
+    owithout,
+    parseQuery,
+    pathToTree,
+    random,
+    sortByKey,
+    ucfirst,
+    uuidAddDashes,
     uuidStripDashes
 };
 export default tools;

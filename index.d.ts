@@ -122,6 +122,17 @@ export declare function ashift(arr: any[], from: number, to: number): void;
  */
 export declare function bytesHuman(num: number): string;
 /**
+ * classes
+ *
+ * Simplified replacement for the React classSet function
+ *
+ * @name classes
+ * @access public
+ * @param o The object of classes (keys) to bools (values)
+ * @return classes split by spaces
+ */
+export declare function classes(o: Record<string, boolean>): string;
+/**
  * Combine
  *
  * Combines two objects into a new one and returns it. If there are any
@@ -494,6 +505,7 @@ declare const tools: {
     arrayFindOverwrite: typeof arrayFindOverwrite;
     ashift: typeof ashift;
     bytesHuman: typeof bytesHuman;
+    classes: typeof classes;
     combine: typeof combine;
     compare: typeof compare;
     difference: typeof difference;

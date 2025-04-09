@@ -1,8 +1,10 @@
 # @ouroboros/tools
-
 [![npm version](https://img.shields.io/npm/v/@ouroboros/tools.svg)](https://www.npmjs.com/package/@ouroboros/tools) ![MIT License](https://img.shields.io/npm/l/@ouroboros/tools.svg)
 
-A library with several generic functions for standard javascript problems
+A library with several generic functions for standard javascript problems.
+
+See [Releases](https://github.com/ouroboroscoding/tools-js/blob/main/releases.md)
+for changes from release to release.
 
 ## Installation
 npm
@@ -11,7 +13,6 @@ npm install @ouroboros/tools
 ```
 
 ## Functions
-
 - [afindi](#afindi)
 - [afindo](#afindo)
 - [arrayFindDelete](#arrayfinddelete)
@@ -19,6 +20,7 @@ npm install @ouroboros/tools
 - [arrayFindOverwrite](#arrayfindoverwrite)
 - [ashift](#ashift)
 - [bytesHuman](#byteshuman)
+- [classes](#classes)
 - [combine](#combine)
 - [compare](#compare)
 - [difference](#difference)
@@ -69,6 +71,9 @@ i = afindi(a, 'name', 'Canada');
 // i = -1
 i = afindi(a, 'iso', 'GB');
 ```
+
+[ [functions](#functions) ]
+
 ## afindo
 Used to find an object in an array of objects based on key and value.
 ```javascript
@@ -90,6 +95,9 @@ o = afindo(a, 'name', 'Canada');
 // o = null
 o = afindo(a, 'iso', 'GB');
 ```
+
+[ [functions](#functions) ]
+
 ## arrayFindDelete
 Used to delete an object in an array of objects based on key and value.
 
@@ -119,6 +127,9 @@ arrayFindDelete(a, 'iso', 'GB');
 // ]
 arrayFindDelete(a, 'iso', 'US', true);
 ```
+
+[ [functions](#functions) ]
+
 ## arrayFindMerge
 Used to find an object in an array of objects based on key and value, then
 merges the new passed data with the existing object found.
@@ -152,6 +163,9 @@ arrayFindMerge(a, 'iso', 'GB', { name: 'Great Britain' });
 // ]
 arrayFindMerge(a, 'iso', 'CA', { name: 'Kanata' }, true);
 ```
+
+[ [functions](#functions) ]
+
 ## arrayFindOverwrite
 Used to find an object in an array of objects based on key and value, then
 overwrites it with the new passed data.
@@ -188,6 +202,9 @@ arrayFindOverwrite(a, 'iso', 'CA', {name: 'France'}, true);
 // returns `a` untouched
 arrayFindOverwrite(a, 'iso', 'CA', {name: 'France'}, true);
 ```
+
+[ [functions](#functions) ]
+
 ## ashift
 Shifts an item in an array from one index to another.
 ```javascript
@@ -198,6 +215,9 @@ const a = ['!', 'hello', 'world'];
 // a = ['hello', 'world', '!']
 ashift(a, 0, 2);
 ```
+
+[ [functions](#functions) ]
+
 ## bytesHuman
 Converts a number of bytes into a human readable string.
 ```javascript
@@ -208,6 +228,28 @@ const bytes = 1073741824; // 1024 * 1024 * 1024
 // s = '1.0GiB'
 const s = bytesHuman(bytes);
 ```
+
+[ [functions](#functions) ]
+
+## classes
+Converts an object of css class names as keys into a string. A simplified replacement for React's classSet.
+```javascript
+import { classes } from '@ouroboros/tools';
+
+const s;
+
+// s = 'tab'
+s = classes({ tab: true, selected: false });
+
+// s = 'tab selected'
+s = classes({ tab: true, selected: true });
+
+// s = 'red tab selected'
+s = classes({ 'red tab': true, selected: true });
+```
+
+[ [functions](#functions) ]
+
 ## combine
 Combines two objects into a new one and returns it. If there are any duplicate keys, those in "a" are overwritten by those in "b".
 ```javascript
@@ -219,6 +261,8 @@ const b = {two: 2, three: 3}
 // c = { hello: 'world', one: 1, three: 3, two: 2 }
 const c = combine(a, b);
 ```
+
+[ [functions](#functions) ]
 
 ## compare
 Compares two values of any type to see if they contain the same data or not.
@@ -244,6 +288,8 @@ compare(
 );
 ```
 
+[ [functions](#functions) ]
+
 ## difference
 Returns the changes from the original value, x, to the new value, y.
 ```javascript
@@ -255,6 +301,8 @@ difference(
   { one, 1, two: 'deux', three: 3 }
 );
 ```
+
+[ [functions](#functions) ]
 
 ## divmod
 Take two (non complex) numbers as arguments and return a pair of numbers consisting of their quotient and remainder when using integer division.
@@ -268,6 +316,9 @@ l = divmod(100, 9);
 // l = [24, 3]
 l = divmod(123, 5)
 ```
+
+[ [functions](#functions) ]
+
 ## empty
 Returns true if the value is "empty" for its type. Similar to how Python checks for False in dicts, lists, and strs.
 ```javascript
@@ -284,6 +335,9 @@ empty(a);
 empty(' ');
 empty(['']);
 ```
+
+[ [functions](#functions) ]
+
 ## isDecimal
 Returns true if the variable is a number.
 ```javascript
@@ -302,6 +356,8 @@ isDecimal('1');
 isDecimal([]);
 ```
 
+[ [functions](#functions) ]
+
 ## isInteger
 Returns true if the variable is a true integer.
 ```javascript
@@ -317,6 +373,9 @@ isInteger('1');
 isInteger(1.1);
 isInteger([]);
 ```
+
+[ [functions](#functions) ]
+
 ## isNumeric
 Returns true if a string is made up only of digits.
 ```javascript
@@ -332,6 +391,9 @@ isNumeric(' 1');
 isNumeric('1.');
 isNumeric('1.1');
 ```
+
+[ [functions](#functions) ]
+
 ## isObject
 Returns true if the variable is a true object.
 ```javascript
@@ -346,6 +408,8 @@ isObject(null);
 isObject([]);
 isObject('hello');
 ```
+
+[ [functions](#functions) ]
 
 ## join
 Creates a single string from a list of members that may or may not exist in the passed object.
@@ -362,6 +426,8 @@ join(name1, ['title', 'first', 'middle', 'last']);
 join(name2, ['title', 'first', 'middle', 'last'], '');
 ```
 
+[ [functions](#functions) ]
+
 ## latitudeToDegrees
 Returns the string representation of a latitude from a decimal/float value
 ```javascript
@@ -373,6 +439,8 @@ latitudeToDegrees(45.508888);
 // Nord45° 30' 32.00"
 latitudeToDegrees(45.508888, [ 'Nord', 'Sud' ]);
 ```
+
+[ [functions](#functions) ]
 
 ## longitudeToDegrees
 Returns the string representation of a longitude from a decimal/float value
@@ -386,6 +454,8 @@ longitudeToDegrees(-73.561668);
 longitudeToDegrees(-73.561668, [ 'E', 'O' ]);
 ```
 
+[ [functions](#functions) ]
+
 ## max
 Returns the maximum (largest) value in an array.
 ```javascript
@@ -398,6 +468,8 @@ max([2, 3, 1]);
 max(['Lion', 'Alligator', 'Zebra']);
 ```
 
+[ [functions](#functions) ]
+
 ## merge
 Merges the keys from the second object into the first.
 ```javascript
@@ -409,6 +481,9 @@ let b = {three: 3};
 // a = {one: 1, two: 2, three: 3}
 merge(a, b);
 ```
+
+[ [functions](#functions) ]
+
 ## min
 Returns the minimum (smallest) value in an array
 ```javascript
@@ -420,6 +495,9 @@ max([2, 3, 1]);
 // Alligator
 max(['Lion', 'Alligator', 'Zebra']);
 ```
+
+[ [functions](#functions) ]
+
 ## nicePhone
 Returns a more easily readable phone number in the NA format.
 ```javascript
@@ -431,6 +509,9 @@ nicePhone('15551234444');
 // +1 (800) 555-1234
 nicePhone('8005551234');
 ```
+
+[ [functions](#functions) ]
+
 ## normalize
 Returns, as well as possible, a normalized string converted from another string containing characters with special accents. It does this by finding special characters and converting them into their simpler, single character, versions. This is useful for things like automaticlaly generating urls, or for generating from unicode into ascii.
 ```javascript
@@ -442,6 +523,9 @@ normalize('Ȟěƚľỡ, Ẉợɽḷᶁ!');
 // 'ffiDAEij'
 normalize('ﬃǲǼĳ');
 ```
+
+[ [functions](#functions) ]
+
 ## objectArrayToObject
 Turns an Array of Objects with set key names into an object built of two spefici keys.
 ```javascript
@@ -462,6 +546,9 @@ objectArrayToObject(a, 'a', 'c');
 // {first_c: 'first_b', second_c: 'second_b', third_c: 'third_b'}
 objectArrayToObject(a, 'c', 'b');
 ```
+
+[ [functions](#functions) ]
+
 ## omap
 Works like map for arrays, but iterates over an object returning the value, the key, and the index, in that order.
 ```javascript
@@ -483,6 +570,9 @@ omap(o, (v, k) => {
     return `${k}:${v}`;
 });
 ```
+
+[ [functions](#functions) ]
+
 ## opop
 Removes an element from an object by name, then returns it.
 ```javascript
@@ -494,6 +584,8 @@ const o = {one: 1, two: 2, three: 3};
 // i = 2
 const i = opop(o, 'two');
 ```
+
+[ [functions](#functions) ]
 
 ## owithout
 Takes an object and removes the given key(s) from it and returns a copy of it
@@ -508,6 +600,8 @@ owithout(o1, 'three');
 // {'two': 2}
 owithout(o1, ['one', 'three']);
 ```
+
+[ [functions](#functions) ]
 
 ## parseQuery
 Turns a query string into an object.
@@ -524,6 +618,8 @@ parseQuery('numbers[0]=one&numbers[1]=two&numbers[2]=three');
 parseQuery('n[one]=1&n[two]=2');
 ```
 
+[ [functions](#functions) ]
+
 ## pathToTree
 Turns a array containing arrays of paths and values, and converts them to a tree
 ```javascript
@@ -537,6 +633,8 @@ pathToTree([['address.line_one', 'missing'],
             ['title', 'missing']
 ]);
 ```
+
+[ [functions](#functions) ]
 
 ## random
 Generates random strings
@@ -589,6 +687,8 @@ random(8, ['!', '0x'])
 random(8, ['!', '0x'], false)
 ```
 
+[ [functions](#functions) ]
+
 ## sortByKey
 Returns a callback function that will compare two objects by the key name. Useful for sorting arrays of objects using sort
 ```javascript
@@ -608,6 +708,8 @@ let people = [
 people.sort(sortByKey('first'));
 ```
 
+[ [functions](#functions) ]
+
 ## ucfirst
 Makes the first character of each word in the text upper case.
 ```javascript
@@ -620,6 +722,8 @@ ucfirst('hello, world!');
 ucfirst('HELLO, WORLD!');
 ```
 
+[ [functions](#functions) ]
+
 ## uuidAddDashes
 Takes a UUID string in which the dash character has been stripped out, and adds the dashes back in the proper location.
 ```javascript
@@ -629,6 +733,8 @@ import { uuidAddDashes } from '@ouroboros/tools';
 uuidAddDashes('d23de65ebbdd11ef8f058f48b9c7b948');
 ```
 
+[ [functions](#functions) ]
+
 ## uuidStripDashes
 Takes a UUID string and strips out the dash characters to make it shorter / smaller.
 ```javascript
@@ -637,3 +743,5 @@ import { uuidStripDashes } from '@ouroboros/tools';
 // d23de65ebbdd11ef8f058f48b9c7b948
 uuidStripDashes('d23de65e-bbdd-11ef-8f05-8f48b9c7b948');
 ```
+
+[ [functions](#functions) ]
