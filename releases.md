@@ -1,6 +1,6 @@
 # @ouroboros/tools releases
 
-## TBD
+## 0.7.1
 - Added `classes` function.
 
 ## 0.7.0
