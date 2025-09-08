@@ -1,5 +1,8 @@
 # @ouroboros/tools releases
 
+## 0.7.2
+- Added `oforEach` function to mimic forEach using Objects instead of Arrays.
+
 ## 0.7.1
 - Added `classes` function.
 
