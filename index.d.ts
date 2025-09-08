@@ -352,6 +352,19 @@ export declare function normalize(text: string): string;
  */
 export declare function objectArrayToObject(a: Record<string, any>[], keyKey: string, valueKey: string): Record<string, string>;
 /**
+ * Object For Each
+ *
+ * Works like forEach for arrays, but iterates over an object returning the
+ * value, the key, and the index, in that order.
+ *
+ * @name oforEach
+ * @access public
+ * @param o The object to map
+ * @param callback The function to call each iteration
+ * @returns void
+ */
+export declare function oforEach(o: Record<string, any>, callback: (v: any, k: string, i: number) => any): void;
+/**
  * Object Map
  *
  * Works like map for arrays, but iterates over an object returning the value,
@@ -524,6 +537,7 @@ declare const tools: {
     nicePhone: typeof nicePhone;
     normalize: typeof normalize;
     objectArrayToObject: typeof objectArrayToObject;
+    oforEach: typeof oforEach;
     omap: typeof omap;
     opop: typeof opop;
     owithout: typeof owithout;

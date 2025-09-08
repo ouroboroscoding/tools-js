@@ -942,6 +942,24 @@ export function objectArrayToObject(a, keyKey, valueKey) {
     return o;
 }
 /**
+ * Object For Each
+ *
+ * Works like forEach for arrays, but iterates over an object returning the
+ * value, the key, and the index, in that order.
+ *
+ * @name oforEach
+ * @access public
+ * @param o The object to map
+ * @param callback The function to call each iteration
+ * @returns void
+ */
+export function oforEach(o, callback) {
+    let index = 0;
+    for (const k of Object.keys(o)) {
+        callback(o[k], k, index++);
+    }
+}
+/**
  * Object Map
  *
  * Works like map for arrays, but iterates over an object returning the value,
@@ -1365,6 +1383,7 @@ const tools = {
     nicePhone,
     normalize,
     objectArrayToObject,
+    oforEach,
     omap,
     opop,
     owithout,

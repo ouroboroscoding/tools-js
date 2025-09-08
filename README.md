@@ -39,6 +39,7 @@ npm install @ouroboros/tools
 - [nicePhone](#nicephone)
 - [normalize](#normalize)
 - [objectArrayToObject](#objectarraytoobject)
+- [oforEach](#oforEach)
 - [omap](#omap)
 - [opop](#opop)
 - [owithout](#owithout)
@@ -545,6 +546,20 @@ objectArrayToObject(a, 'a', 'c');
 
 // {first_c: 'first_b', second_c: 'second_b', third_c: 'third_b'}
 objectArrayToObject(a, 'c', 'b');
+```
+[ [functions](#functions) ]
+
+## oforEach
+Works like forEach for arrays, but iterates over an object returning the value, the key, and the index, in that order.
+```javascript
+import { oforEach } from '@ouroboros/tools';
+
+const o = {one: 'uno', two: 'dos', three: 'tres'};
+
+// one in Spanish is uno.
+// two in Spanish is dos.
+// three in Spanish is tres.
+oforEach(o, (v, k) => console.log(`${k} in Spanish is ${v}.`));
 ```
 
 [ [functions](#functions) ]

@@ -30,7 +30,11 @@ const _reQueryName: RegExp = /^([a-zA-Z_][0-9a-zA-Z_]*)(\[([0-9a-zA-Z_]*)\])?$/
  * @param v The value to check against
  * @returns The index found, or -1
  */
-export function afindi(a: Record<string, any>[], k: string | number, v: any): number {
+export function afindi(
+	a: Record<string, any>[],
+	k: string | number,
+	v: any
+): number {
 	for(let i: number = 0; i < a.length; ++i) {
 		if(a[i][k] === v) {
 			return i;
@@ -52,7 +56,11 @@ export function afindi(a: Record<string, any>[], k: string | number, v: any): nu
  * @param v The value to check against
  * @returns The object found, or null
  */
-export function afindo(a: Record<string, any>[], k: string | number, v: any): Record<string, any> | null {
+export function afindo(
+	a: Record<string, any>[],
+	k: string | number,
+	v: any
+): Record<string, any> | null {
 	for(const o of a) {
 		if(o[k] === v) {
 			return o;
@@ -80,7 +88,12 @@ export function afindo(a: Record<string, any>[], k: string | number, v: any): Re
  * 						in place of true or false
  * @returns boolean | Array
  */
-export function arrayFindDelete(a: Record<string, any>[], k: string | number, v: any, returnClone?: boolean): boolean | Record<string, any>[] {
+export function arrayFindDelete(
+	a: Record<string, any>[],
+	k: string | number,
+	v: any,
+	returnClone?: boolean
+): boolean | Record<string, any>[] {
 
 	// First, find the record
 	const i = afindi(a, k, v);
@@ -122,7 +135,13 @@ export function arrayFindDelete(a: Record<string, any>[], k: string | number, v:
  * 						in place of true or false
  * @returns boolean | Array
  */
-export function arrayFindMerge(a: Record<string, any>[], k: string | number, v: any, d: Record<string, any>, returnClone?: boolean): boolean | Record<string, any>[] {
+export function arrayFindMerge(
+	a: Record<string, any>[],
+	k: string | number,
+	v: any,
+	d: Record<string, any>,
+	returnClone?: boolean
+): boolean | Record<string, any>[] {
 
 	// First, find the record
 	const i = afindi(a, k, v);
@@ -164,7 +183,13 @@ export function arrayFindMerge(a: Record<string, any>[], k: string | number, v: 
  * 						in place of true or false
  * @returns boolean | Array
  */
-export function arrayFindOverwrite(a: Record<string, any>[], k: string | number, v: any, d: Record<string, any>, returnClone?: boolean): boolean | Record<string, any>[] {
+export function arrayFindOverwrite(
+	a: Record<string, any>[],
+	k: string | number,
+	v: any,
+	d: Record<string, any>,
+	returnClone?: boolean
+): boolean | Record<string, any>[] {
 
 	// First, find the record
 	const i = afindi(a, k, v);
@@ -257,7 +282,10 @@ export function classes(o: Record<string, boolean>) {
  * @param b An object to be combined with a
  * @returns A new object of a and b
  */
-export function combine(a: Record<string, any>, b: Record<string, any>): Record<string, any> {
+export function combine(
+	a: Record<string, any>,
+	b: Record<string, any>
+): Record<string, any> {
 
 	// Copy the first object
 	const o = clone(a);
@@ -604,7 +632,11 @@ export function isObject(m: any): boolean {
  * @param separator Optional char/string to join with, defaults to space
  * @returns The joined string
  */
-export function join(o: Record<string, any>, l: string[], separator: string=' ') {
+export function join(
+	o: Record<string, any>,
+	l: string[],
+	separator: string=' '
+) {
 
 	// Init the array of found members
 	const lFound: any[] = [];
@@ -1105,12 +1137,38 @@ export function normalize(text: string): string {
  * @param valueKey The key of `a` that will be the value in the return
  * @returns A new object generated from the values in `a` using the keys
  */
-export function objectArrayToObject(a: Record<string, any>[], keyKey: string, valueKey: string) {
+export function objectArrayToObject(
+	a: Record<string, any>[],
+	keyKey: string,
+	valueKey: string
+) {
 	const o: Record<string, string> = {};
 	a.map((l: Record<string, any>) => {
 		o[String(l[keyKey])] = l[valueKey];
 	});
 	return o;
+}
+
+/**
+ * Object For Each
+ *
+ * Works like forEach for arrays, but iterates over an object returning the
+ * value, the key, and the index, in that order.
+ *
+ * @name oforEach
+ * @access public
+ * @param o The object to map
+ * @param callback The function to call each iteration
+ * @returns void
+ */
+export function oforEach(
+	o: Record<string, any>,
+	callback: (v: any, k: string, i: number) => any
+) {
+	let index: number = 0;
+	for(const k of Object.keys(o)) {
+		callback(o[k], k, index++)
+	}
 }
 
 /**
@@ -1125,7 +1183,10 @@ export function objectArrayToObject(a: Record<string, any>[], keyKey: string, va
  * @param callback The function to call each iteration
  * @returns a new array of each processed object
  */
-export function omap(o: Record<string, any>, callback: (v: any, k: string, i: number) => any): any[] {
+export function omap(
+	o: Record<string, any>,
+	callback: (v: any, k: string, i: number) => any
+): any[] {
 	const ret: any[] = [];
 	let index: number = 0;
 	for(const k of Object.keys(o)) {
@@ -1161,7 +1222,10 @@ export function opop(o: Record<string, any>, name: string): any {
  * @param keys The key, or keys, to remove from the object
  * @returns a copy of the object without the keys
  */
-export function owithout(o: Record<string, any>, keys: string | string[]): Record<string, any> {
+export function owithout(
+	o: Record<string, any>,
+	keys: string | string[]
+): Record<string, any> {
 
 	// Clone the object
 	const ret = clone(o);
@@ -1456,7 +1520,11 @@ const _oRandomSets = {
  *                   once
  * @returns the generated random string
  */
-export function random(length: number, sets: string | string[] = ['aZ'], duplicates: boolean=true): string {
+export function random(
+	length: number,
+	sets: string | string[] = [ 'aZ' ],
+	duplicates: boolean=true
+): string {
 
 	// Init the character array
 	let chars: string = '';
@@ -1494,13 +1562,17 @@ export function random(length: number, sets: string | string[] = ['aZ'], duplica
 
 	// Else, the value of sets is invalid
 	else {
-		throw new Error(`${sets} is not a valid value for sets argument of random`);
+		throw new Error(
+			`${sets} is not a valid value for sets argument of random`
+		);
 	}
 
 	// If we don't allow duplicates, and the length of available characters is
 	//	less than the expected length, throw an error
 	if(!duplicates && chars.length < length) {
-		throw new Error(`Can not generate random string with no duplicates from the given sets "${chars}"`)
+		throw new Error(
+			`Can not generate random string with no duplicates from the given sets "${chars}"`
+		);
 	}
 
 	// Init the return variable
@@ -1617,6 +1689,7 @@ const tools = {
 	nicePhone,
 	normalize,
 	objectArrayToObject,
+	oforEach,
 	omap,
 	opop,
 	owithout,
