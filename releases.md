@@ -1,5 +1,8 @@
 # @ouroboros/tools releases
 
+## 0.7.3
+- Fixed bug in `join` where empty strings were added, effectively nullifying the point of the function.
+
 ## 0.7.2
 - Added `oforEach` function to mimic forEach using Objects instead of Arrays.
 
