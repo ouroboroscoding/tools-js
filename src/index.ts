@@ -645,7 +645,7 @@ export function join(
 	for(const s of l) {
 
 		// If it exists
-		if(s in o) {
+		if(s in o && o[s] !== '') {
 			lFound.push(o[s]);
 		}
 	}

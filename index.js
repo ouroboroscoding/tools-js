@@ -530,7 +530,7 @@ export function join(o, l, separator = ' ') {
     // Go through each member passed
     for (const s of l) {
         // If it exists
-        if (s in o) {
+        if (s in o && o[s] !== '') {
             lFound.push(o[s]);
         }
     }
